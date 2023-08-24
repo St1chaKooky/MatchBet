@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 import '../utils/colors.dart';
@@ -19,59 +17,77 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).textTheme;
     return Scaffold(
-      backgroundColor: backgroundColor,
-      appBar: AppBar(
-        backgroundColor: whiteColor,
-        actions: const [],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
-        child: Column(
-          children: [
-            Container(),
-            Row(
-              children: [
-                ButtonLitleWidget(
-                  onTap: () => setState(() {
-                    f = true;
-                  }),
-                  buttonText: 'Матчи',
-                  colorFill: f ? primaryColor : whiteColor,
-                  colorText: f ? whiteColor : textColor,
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                ButtonLitleWidget(
-                  onTap: () => setState(() {
-                    f = false;
-                  }),
-                  buttonText: 'Прогнозы',
-                  colorFill: f ? whiteColor : primaryColor,
-                  colorText: f ? textColor : whiteColor,
-                ),
-                const SizedBox(
-                  width: 50,
-                ),
-                const Text('Сегодня'),
-              ],
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            ListPrognozWidget(),
-            Expanded(
-              child: ListView.builder(
-                  itemCount: 10,
-                  itemBuilder: (context, i) => const Padding(
-                        padding: EdgeInsets.only(bottom: 8),
-                        child: ListTitleWidget(),
-                      )),
-            )
-          ],
+        body: CustomScrollView(
+      slivers: [
+        SliverAppBar(
+          expandedHeight: 60,
+          floating: false,
+          backgroundColor: whiteColor,
+
+          title: Center(
+            child: f
+                ? Text(
+                    'Все матчи',
+                    style: theme.titleSmall,
+                  )
+                : Text(
+                    'Прогнозы',
+                    style: theme.titleSmall,
+                  ),
+          ),
+          // другие настройки flexibleSpace
+
+          elevation: 0,
         ),
-      ),
-    );
+        const SliverToBoxAdapter(
+          child: SizedBox(
+            height: 18,
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: Row(
+            children: [
+              const SizedBox(
+                width: 18,
+              ),
+              ButtonLitleWidget(
+                onTap: () => setState(() {
+                  f = true;
+                }),
+                buttonText: 'Матчи',
+                colorFill: f ? primaryColor : whiteColor,
+                colorText: f ? whiteColor : textColor,
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              ButtonLitleWidget(
+                onTap: () => setState(() {
+                  f = false;
+                }),
+                buttonText: 'Прогнозы',
+                colorFill: f ? whiteColor : primaryColor,
+                colorText: f ? textColor : whiteColor,
+              ),
+              const SizedBox(
+                width: 50,
+              ),
+              const Text('Сегодня'),
+            ],
+          ),
+        ),
+        const SliverToBoxAdapter(
+          child: SizedBox(
+            height: 18,
+          ),
+        ),
+        SliverList.builder(
+            itemCount: 20,
+            itemBuilder: (context, i) =>
+                f ? const ListTitleWidget() : const ListPrognozWidget()),
+      ],
+    ));
   }
 }

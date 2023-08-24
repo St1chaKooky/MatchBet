@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:match_bet/utils/colors.dart';
 
 class ListPrognozWidget extends StatelessWidget {
@@ -6,72 +7,150 @@ class ListPrognozWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).textTheme;
+
     return Container(
-      color: whiteColor,
-      height: 340,
+      decoration: BoxDecoration(
+        color: whiteColor,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      height: 200,
+      margin: const EdgeInsets.symmetric(horizontal: 18).copyWith(bottom: 15),
       child: Padding(
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.all(14),
         child: Column(children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [
-                  Container(
-                    color: blackColor,
-                    width: 30,
-                    height: 30,
+                  CircleAvatar(
+                    backgroundColor: bottomBarColor,
+                    radius: 13,
                   ),
-                  Text('Иосиф Сталин'),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'Иосиф Сталин',
+                    style: theme.bodyMedium,
+                  ),
                 ],
               ),
-              Text('Рейтинг'),
+              Text(
+                'Рейтинг: 111 455',
+                style: theme.bodyMedium,
+              ),
             ],
           ),
+          const SizedBox(
+            height: 12,
+          ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
-                children: [Text('Интер'), Text('Монца')],
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Интер',
+                    style: theme.headlineSmall,
+                  ),
+                  Text('Монца', style: theme.headlineSmall)
+                ],
               ),
               Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text('Сегодня'),
-                  Text('11:00'),
+                  Text(
+                    'Сегодня',
+                    style: theme.bodyMedium,
+                  ),
+                  Text(
+                    '11:00',
+                    style: theme.bodyMedium,
+                  ),
                 ],
               )
             ],
           ),
+          const SizedBox(
+            height: 12,
+          ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Прогноз'),
-                  Text('ТМ1.5'),
+                  Text(
+                    'Прогноз',
+                    style: theme.bodySmall,
+                  ),
+                  Text(
+                    'ТМ1.5',
+                    style: theme.bodyLarge,
+                  ),
                 ],
               ),
               Container(
-                color: blackColor,
-                width: 50,
-                height: 30,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(7),
+                    color: primaryColor),
+                width: 60,
+                height: 35,
+                child: Center(
+                    child: Text(
+                  '2.47',
+                  style: TextStyle(
+                      fontSize: 14,
+                      color: whiteColor,
+                      fontWeight: FontWeight.w400),
+                )),
               )
             ],
           ),
+          const SizedBox(
+            height: 12,
+          ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [
-                  Container(
-                    color: blackColor,
-                    width: 30,
-                    height: 30,
+                  SvgPicture.asset(
+                    'images/like.svg',
+                    width: 22,
+                    height: 22,
                   ),
-                  Container(
-                    color: blackColor,
-                    width: 30,
-                    height: 30,
+                  const SizedBox(
+                    width: 6,
+                  ),
+                  Text(
+                    '68%',
+                    style: theme.labelMedium,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  SvgPicture.asset(
+                    'images/dizlike.svg',
+                    width: 22,
+                    height: 22,
+                  ),
+                  const SizedBox(
+                    width: 6,
+                  ),
+                  Text(
+                    '32%',
+                    style: theme.labelMedium,
                   ),
                 ],
               ),
-              Text('Читать дальше')
+              Text(
+                'Читать дальше',
+                style: theme.labelMedium,
+              )
             ],
           ),
         ]),

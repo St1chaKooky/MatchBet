@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:match_bet/utils/theme.dart';
 import 'screens/main_screen.dart';
+import 'screens/match_screen.dart';
 
 void main() {
   runApp(const MyApp());

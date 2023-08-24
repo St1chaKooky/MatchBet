@@ -8,11 +8,13 @@ class ListTitleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Container(
+      width: double.infinity,
+      height: 58,
+      margin: const EdgeInsets.symmetric(horizontal: 18).copyWith(bottom: 15),
       decoration: BoxDecoration(
         color: whiteColor,
         borderRadius: BorderRadius.circular(7),
       ),
-      height: 55,
       child: Row(children: [
         const SizedBox(
           width: 12,

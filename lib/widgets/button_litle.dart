@@ -5,10 +5,12 @@ class ButtonLitleWidget extends StatefulWidget {
   final String buttonText;
   final Color colorFill;
   final Color colorText;
+  final double width;
 
   const ButtonLitleWidget(
       {super.key,
       required this.onTap,
+      this.width = 110,
       required this.buttonText,
       required this.colorFill,
       required this.colorText});
@@ -23,10 +25,10 @@ class _ButtonLitleWidgetState extends State<ButtonLitleWidget> {
     return InkWell(
       onTap: widget.onTap,
       child: Container(
-          width: 110,
+          width: widget.width,
           alignment: Alignment.center,
           padding: const EdgeInsets.symmetric(
-            vertical: 8,
+            vertical: 10,
           ),
           decoration: ShapeDecoration(
               shape: const RoundedRectangleBorder(

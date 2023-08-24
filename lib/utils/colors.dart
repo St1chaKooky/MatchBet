@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-final backgroundColor = Color(hexColor('F4F5F6'));
+final backgroundColor = Color(hexColor('F5F5F5'));
 final inputColor = Color(hexColor('ECECEC'));
 final bottomBarColor = Color(hexColor('D9D9D9'));
 final textColor = Color(hexColor('63625D'));
