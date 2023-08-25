@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:match_bet/utils/colors.dart';
 import 'package:match_bet/widgets/button.dart';
 
-import '../widgets/button_google.dart';
-import '../widgets/input.dart';
+import '../../utils/colors.dart';
+import '../../widgets/button_google.dart';
+import '../../widgets/input.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,15 +26,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Flexible(
                 flex: 2,
                 child: Container(),
-              ),
-              const SizedBox(
-                height: 12,
-              ),
-              const TextFieldInput(
-                hintText: 'Enter your username',
-                textInputType: TextInputType.text,
-                // textEditingController: _passwordController,
-                isPassword: true,
               ),
               const SizedBox(
                 height: 64,
@@ -56,7 +47,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               const SizedBox(
                 height: 12,
               ),
-              ButtonWidget(onTap: () {}, buttonText: 'Sign Up'),
+              ButtonWidget(onTap: () {}, buttonText: 'Log in'),
               const SizedBox(
                 height: 10,
               ),

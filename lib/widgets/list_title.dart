@@ -62,7 +62,7 @@ class _MatchList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () => print('lalal'),
       child: Container(
         height: 55,
         decoration: const BoxDecoration(

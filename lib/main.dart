@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:match_bet/utils/theme.dart';
-import 'screens/main_screen.dart';
-import 'screens/match_screen.dart';
+import 'screens/main_page/main_screen.dart';
+import 'screens/main_page/match_screen.dart';
+import 'screens/main_page/prognoz_match_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: buildThemeData(context),
-      home: const MainScreen(),
+      home: const PrognozScreen(),
     );
   }
 }
