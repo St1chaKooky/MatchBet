@@ -30,6 +30,8 @@ class _ButtonWidgetState extends State<ButtonWidget> {
           child: Text(
             widget.buttonText,
             style: TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w400,
               color: whiteColor,
             ),
           )),

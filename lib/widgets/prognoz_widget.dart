@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:match_bet/utils/colors.dart';
 
 class PrognozWidget extends StatelessWidget {

@@ -6,11 +6,13 @@ class ButtonLitleWidget extends StatefulWidget {
   final Color colorFill;
   final Color colorText;
   final double width;
+  final bool bigButton;
 
   const ButtonLitleWidget(
       {super.key,
       required this.onTap,
       this.width = 110,
+      this.bigButton = false,
       required this.buttonText,
       required this.colorFill,
       required this.colorText});
@@ -27,9 +29,13 @@ class _ButtonLitleWidgetState extends State<ButtonLitleWidget> {
       child: Container(
           width: widget.width,
           alignment: Alignment.center,
-          padding: const EdgeInsets.symmetric(
-            vertical: 10,
-          ),
+          padding: widget.bigButton
+              ? const EdgeInsets.symmetric(
+                  vertical: 14,
+                )
+              : const EdgeInsets.symmetric(
+                  vertical: 10,
+                ),
           decoration: ShapeDecoration(
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(
@@ -40,6 +46,8 @@ class _ButtonLitleWidgetState extends State<ButtonLitleWidget> {
           child: Text(
             widget.buttonText,
             style: TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w400,
               color: widget.colorText,
             ),
           )),

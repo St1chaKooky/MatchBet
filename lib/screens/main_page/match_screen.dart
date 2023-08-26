@@ -12,7 +12,7 @@ class MatchScreen extends StatelessWidget {
         title: Center(child: Text('Все матчи')),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15).copyWith(top: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 15).copyWith(top: 18),
         child: MatchWidget(theme: theme),
       ),
     );
