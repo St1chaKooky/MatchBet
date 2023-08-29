@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:match_bet/screens/main_page/prognoz_match_screen.dart';
 
 import '../screens/account_page/accaount_screen.dart';
 import '../screens/add_prognoz_page/list_match_screen.dart';
