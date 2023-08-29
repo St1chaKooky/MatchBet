@@ -1,25 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:match_bet/screens/add_prognoz_page/my_bet_prgnoz.dart';
+import 'package:match_bet/router/router.dart';
+
 import 'package:match_bet/utils/theme.dart';
-import 'screens/add_prognoz_page/list_match_screen.dart';
-import 'screens/add_prognoz_page/my_publication_prognoz.dart';
-import 'screens/main_page/main_screen.dart';
-import 'screens/main_page/match_screen.dart';
-import 'screens/main_page/prognoz_match_screen.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final _router = AppRouter();
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: buildThemeData(context),
-      home: MyBetScreen(),
+      routerConfig: _router.config(),
     );
   }
 }

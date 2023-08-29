@@ -1,0 +1,30 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:match_bet/screens/main_page/prognoz_match_screen.dart';
+
+import '../screens/account_page/accaount_screen.dart';
+import '../screens/add_prognoz_page/list_match_screen.dart';
+import '../screens/main_page/main_screen.dart';
+import 'nav_bar/navigation_bar.dart';
+
+part 'router.gr.dart';
+
+@AutoRouterConfig()
+class AppRouter extends _$AppRouter {
+  @override
+  List<AutoRoute> get routes => [
+        AutoRoute(page: NavigationBarRoute.page, path: '/', children: [
+          AutoRoute(
+            page: MainRoute.page,
+            path: 'main',
+          ),
+          AutoRoute(
+            page: ListMatchRoute.page,
+            path: 'listPrognoz',
+          ),
+          AutoRoute(
+            page: AccountRoute.page,
+            path: 'account',
+          ),
+        ])
+      ];
+}

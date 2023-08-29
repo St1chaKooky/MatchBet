@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/colors.dart';
@@ -5,6 +6,7 @@ import '../../widgets/button_litle.dart';
 import '../../widgets/list_prognoz.dart';
 import '../../widgets/list_title.dart';
 
+@RoutePage()
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 

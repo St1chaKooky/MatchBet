@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../utils/colors.dart';
-import 'button_litle.dart';
 
 class BetWidget extends StatelessWidget {
   const BetWidget({
@@ -17,10 +16,7 @@ class BetWidget extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12), color: whiteColor),
-      child: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (context, index) => BetBlocInfo(),
-      ),
+      child: BetBlocInfo(),
     );
   }
 }
@@ -53,50 +49,65 @@ class BetBlocInfo extends StatelessWidget {
               SizedBox(
                 height: 3,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'П1',
-                    style: theme.headlineSmall,
-                  ),
-                  Text(
-                    '8.83',
-                    style: theme.headlineSmall,
-                  ),
-                ],
+              InkWell(
+                onTap: () {
+                  print('laala');
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'П1',
+                      style: theme.headlineSmall,
+                    ),
+                    Text(
+                      '8.83',
+                      style: theme.headlineSmall,
+                    ),
+                  ],
+                ),
               ),
               SizedBox(
                 height: 3,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'П1',
-                    style: theme.headlineSmall,
-                  ),
-                  Text(
-                    '8.83',
-                    style: theme.headlineSmall,
-                  ),
-                ],
+              InkWell(
+                onTap: () {
+                  print('laala');
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'П1',
+                      style: theme.headlineSmall,
+                    ),
+                    Text(
+                      '8.83',
+                      style: theme.headlineSmall,
+                    ),
+                  ],
+                ),
               ),
               SizedBox(
                 height: 3,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'П1',
-                    style: theme.headlineSmall,
-                  ),
-                  Text(
-                    '8.83',
-                    style: theme.headlineSmall,
-                  ),
-                ],
+              InkWell(
+                onTap: () {
+                  print('laala');
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'П1',
+                      style: theme.headlineSmall,
+                    ),
+                    Text(
+                      '8.83',
+                      style: theme.headlineSmall,
+                    ),
+                  ],
+                ),
               ),
               SizedBox(
                 height: 3,

@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/colors.dart';
 import '../../widgets/list_title.dart';
 
+@RoutePage()
 class ListMatchScreen extends StatefulWidget {
   const ListMatchScreen({super.key});
 

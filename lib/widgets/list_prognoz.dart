@@ -11,154 +11,158 @@ class ListPrognozWidget extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18).copyWith(bottom: 15),
-      child: GestureDetector(
-        behavior: HitTestBehavior.translucent,
-        onTap: () => print('e'),
-        child: Container(
-          decoration: BoxDecoration(
-            color: whiteColor,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          height: 200,
-          child: Padding(
-            padding: const EdgeInsets.all(14),
-            child: Column(children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Container(
+        decoration: BoxDecoration(
+          color: whiteColor,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        height: 200,
+        child: Padding(
+          padding: const EdgeInsets.all(14),
+          child: Column(children: [
+            GestureDetector(
+              behavior: HitTestBehavior.translucent,
+              onTap: () => print('e'),
+              child: Column(
                 children: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      CircleAvatar(
-                        backgroundColor: bottomBarColor,
-                        radius: 13,
-                      ),
-                      const SizedBox(
-                        width: 10,
+                      Row(
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: bottomBarColor,
+                            radius: 13,
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            'Иосиф Сталин',
+                            style: theme.bodyMedium,
+                          ),
+                        ],
                       ),
                       Text(
-                        'Иосиф Сталин',
+                        'Рейтинг: 111 455',
                         style: theme.bodyMedium,
                       ),
                     ],
                   ),
-                  Text(
-                    'Рейтинг: 111 455',
-                    style: theme.bodyMedium,
+                  const SizedBox(
+                    height: 12,
                   ),
-                ],
-              ),
-              const SizedBox(
-                height: 12,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Интер',
-                        style: theme.headlineSmall,
-                      ),
-                      Text('Монца', style: theme.headlineSmall)
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        'Сегодня',
-                        style: theme.bodyMedium,
-                      ),
-                      Text(
-                        '11:00',
-                        style: theme.bodyMedium,
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 12,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Прогноз',
-                        style: theme.bodySmall,
-                      ),
-                      Text(
-                        'ТМ1.5',
-                        style: theme.bodyLarge,
-                      ),
-                    ],
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(7),
-                        color: primaryColor),
-                    width: 60,
-                    height: 35,
-                    child: Center(
-                        child: Text(
-                      '2.47',
-                      style: TextStyle(
-                          fontSize: 14,
-                          color: whiteColor,
-                          fontWeight: FontWeight.w400),
-                    )),
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 12,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SvgPicture.asset(
-                        'images/like.svg',
-                        width: 22,
-                        height: 22,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Интер',
+                            style: theme.headlineSmall,
+                          ),
+                          Text('Монца', style: theme.headlineSmall)
+                        ],
                       ),
-                      const SizedBox(
-                        width: 6,
-                      ),
-                      Text(
-                        '68%',
-                        style: theme.labelMedium,
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      SvgPicture.asset(
-                        'images/dizlike.svg',
-                        width: 22,
-                        height: 22,
-                      ),
-                      const SizedBox(
-                        width: 6,
-                      ),
-                      Text(
-                        '32%',
-                        style: theme.labelMedium,
-                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            'Сегодня',
+                            style: theme.bodyMedium,
+                          ),
+                          Text(
+                            '11:00',
+                            style: theme.bodyMedium,
+                          ),
+                        ],
+                      )
                     ],
                   ),
-                  Text(
-                    'Читать дальше',
-                    style: theme.labelMedium,
-                  )
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Прогноз',
+                            style: theme.bodySmall,
+                          ),
+                          Text(
+                            'ТМ1.5',
+                            style: theme.bodyLarge,
+                          ),
+                        ],
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            color: primaryColor),
+                        width: 60,
+                        height: 35,
+                        child: Center(
+                            child: Text(
+                          '2.47',
+                          style: TextStyle(
+                              fontSize: 14,
+                              color: whiteColor,
+                              fontWeight: FontWeight.w400),
+                        )),
+                      )
+                    ],
+                  ),
                 ],
               ),
-            ]),
-          ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    SvgPicture.asset(
+                      'images/like.svg',
+                      width: 22,
+                      height: 22,
+                    ),
+                    const SizedBox(
+                      width: 6,
+                    ),
+                    Text(
+                      '68%',
+                      style: theme.labelMedium,
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    SvgPicture.asset(
+                      'images/dizlike.svg',
+                      width: 22,
+                      height: 22,
+                    ),
+                    const SizedBox(
+                      width: 6,
+                    ),
+                    Text(
+                      '32%',
+                      style: theme.labelMedium,
+                    ),
+                  ],
+                ),
+                Text(
+                  'Читать дальше',
+                  style: theme.labelMedium,
+                )
+              ],
+            ),
+          ]),
         ),
       ),
     );
