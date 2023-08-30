@@ -4,8 +4,11 @@ import 'package:match_bet/utils/colors.dart';
 import '../../widgets/match_widget.dart';
 import '../../widgets/prognoz_widget.dart';
 
+import 'package:auto_route/auto_route.dart';
+
+@RoutePage()
 class PrognozScreen extends StatelessWidget {
-  const PrognozScreen({super.key});
+  const PrognozScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +41,9 @@ class PrognozScreen extends StatelessWidget {
                   height: 18,
                 ),
                 MatchWidget(theme: theme),
+                const SizedBox(
+                  height: 18,
+                ),
               ]),
             ),
           ),

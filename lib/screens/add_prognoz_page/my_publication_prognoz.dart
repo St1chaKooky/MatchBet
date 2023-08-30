@@ -4,9 +4,11 @@ import 'package:match_bet/utils/colors.dart';
 import '../../widgets/button_litle.dart';
 
 import '../../widgets/prognoz_widget.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class MyPublicationScreen extends StatefulWidget {
-  MyPublicationScreen({super.key});
+  MyPublicationScreen({Key? key}) : super(key: key);
 
   @override
   State<MyPublicationScreen> createState() => _MyPublicationScreenState();
@@ -42,7 +44,7 @@ class _MyPublicationScreenState extends State<MyPublicationScreen> {
 
             title: Center(
               child: Text(
-                'Прогнозы',
+                'Добавь описание',
                 style: theme.titleSmall,
               ),
             ),

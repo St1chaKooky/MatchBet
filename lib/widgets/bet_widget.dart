@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+import '../router/router.dart';
 import '../utils/colors.dart';
 
 class BetWidget extends StatelessWidget {
@@ -51,7 +53,7 @@ class BetBlocInfo extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  print('laala');
+                  AutoRouter.of(context).push(MyPublicationRoute());
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

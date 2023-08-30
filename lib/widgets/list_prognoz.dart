@@ -1,6 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:match_bet/utils/colors.dart';
+
+import '../router/router.dart';
 
 class ListPrognozWidget extends StatelessWidget {
   const ListPrognozWidget({super.key});
@@ -22,7 +25,9 @@ class ListPrognozWidget extends StatelessWidget {
           child: Column(children: [
             GestureDetector(
               behavior: HitTestBehavior.translucent,
-              onTap: () => print('e'),
+              onTap: () {
+                AutoRouter.of(context).push(PrognozRoute());
+              },
               child: Column(
                 children: [
                   Row(
@@ -156,9 +161,15 @@ class ListPrognozWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                Text(
-                  'Читать дальше',
-                  style: theme.labelMedium,
+                GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onTap: () {
+                    AutoRouter.of(context).push(PrognozRoute());
+                  },
+                  child: Text(
+                    'Читать дальше',
+                    style: theme.labelMedium,
+                  ),
                 )
               ],
             ),

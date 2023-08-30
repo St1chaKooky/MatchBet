@@ -4,8 +4,8 @@ import 'package:match_bet/utils/colors.dart';
 
 import '../router/router.dart';
 
-class ListTitleWidget extends StatelessWidget {
-  const ListTitleWidget({super.key});
+class ListTitleWidgetAdd extends StatelessWidget {
+  const ListTitleWidgetAdd({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +66,7 @@ class _MatchList extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        AutoRouter.of(context).push(MatchRoute());
+        AutoRouter.of(context).push(MatchRouteAdd());
       },
       child: Container(
         height: 55,

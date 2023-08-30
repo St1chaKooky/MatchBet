@@ -3,9 +3,11 @@ import 'package:flutter/rendering.dart';
 
 import '../../utils/colors.dart';
 import '../../widgets/bet_widget.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class MyBetScreen extends StatefulWidget {
-  const MyBetScreen({super.key});
+  const MyBetScreen({Key? key}) : super(key: key);
 
   @override
   State<MyBetScreen> createState() => _MyBetScreenState();

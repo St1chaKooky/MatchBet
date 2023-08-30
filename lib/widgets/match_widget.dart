@@ -1,13 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+import '../router/router.dart';
 import '../utils/colors.dart';
 import 'button_litle.dart';
 
 class MatchWidget extends StatelessWidget {
-  const MatchWidget({
-    super.key,
-    required this.theme,
-  });
+  const MatchWidget({Key? key, required this.theme}) : super(key: key);
 
   final TextTheme theme;
 
@@ -116,7 +115,9 @@ class MatchWidget extends StatelessWidget {
               children: [
                 ButtonLitleWidget(
                   width: 150,
-                  onTap: () {},
+                  onTap: () {
+                    AutoRouter.of(context).push(MyBetRoute());
+                  },
                   buttonText: 'Составить прогноз',
                   colorFill: primaryColor,
                   colorText: whiteColor,
@@ -126,7 +127,9 @@ class MatchWidget extends StatelessWidget {
                 ),
                 ButtonLitleWidget(
                   width: 120,
-                  onTap: () {},
+                  onTap: () {
+                    AutoRouter.of(context).push(MainRoute());
+                  },
                   buttonText: 'Прогнозы',
                   colorFill: whiteColor,
                   colorText: primaryColor,

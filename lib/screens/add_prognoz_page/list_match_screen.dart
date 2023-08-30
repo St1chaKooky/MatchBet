@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/colors.dart';
-import '../../widgets/list_title.dart';
+import '../../widgets/list_title_add.dart';
 
 @RoutePage()
 class ListMatchScreen extends StatefulWidget {
@@ -41,7 +41,7 @@ class _ListMatchScreenState extends State<ListMatchScreen> {
         ),
         SliverList.builder(
             itemCount: 20,
-            itemBuilder: (context, i) => const ListTitleWidget()),
+            itemBuilder: (context, i) => const ListTitleWidgetAdd()),
       ],
     ));
   }

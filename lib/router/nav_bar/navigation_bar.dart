@@ -21,7 +21,9 @@ class NavigationBarScreen extends StatelessWidget {
         return Scaffold(
           body: child,
           bottomNavigationBar: BottomNavigationBar(
+            backgroundColor: whiteColor,
             currentIndex: tabsRouter.activeIndex,
+            elevation: 0,
             selectedItemColor: primaryColor,
             unselectedItemColor: bottomBarColor,
             onTap: (index) => openPage(index, tabsRouter),
