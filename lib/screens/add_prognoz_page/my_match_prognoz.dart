@@ -18,6 +18,7 @@ class MatchScreenAdd extends StatelessWidget {
             floating: false,
             backgroundColor: whiteColor,
 
+            centerTitle: true,
             title: Center(
               child: Text(
                 'Создай свой прогноз',

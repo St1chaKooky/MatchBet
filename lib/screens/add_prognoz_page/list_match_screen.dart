@@ -23,12 +23,12 @@ class _ListMatchScreenState extends State<ListMatchScreen> {
           expandedHeight: 60,
           floating: false,
           backgroundColor: whiteColor,
+          automaticallyImplyLeading: false,
 
-          title: Center(
-            child: Text(
-              'Создай свой прогноз',
-              style: theme.titleSmall,
-            ),
+          centerTitle: true,
+          title: Text(
+            'Создай свой прогноз',
+            style: theme.titleSmall,
           ),
           // другие настройки flexibleSpace
 

@@ -30,28 +30,31 @@ class _SignUpScreenState extends State<SignUpScreen> {
               const SizedBox(
                 height: 12,
               ),
-              const TextFieldInput(
+              TextFieldInput(
                 hintText: 'Enter your username',
                 textInputType: TextInputType.text,
                 // textEditingController: _passwordController,
                 isPassword: true,
+                color: inputColor,
               ),
               const SizedBox(
                 height: 64,
               ),
-              const TextFieldInput(
+              TextFieldInput(
                 hintText: 'Enter your email',
                 textInputType: TextInputType.emailAddress,
                 // textEditingController: _emailController,
+                color: inputColor,
               ),
               const SizedBox(
                 height: 12,
               ),
-              const TextFieldInput(
+              TextFieldInput(
                 hintText: 'Enter your password',
                 textInputType: TextInputType.text,
                 // textEditingController: _passwordController,
                 isPassword: true,
+                color: inputColor,
               ),
               const SizedBox(
                 height: 12,

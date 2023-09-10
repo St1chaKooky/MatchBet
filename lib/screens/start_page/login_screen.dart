@@ -30,19 +30,21 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(
                 height: 64,
               ),
-              const TextFieldInput(
+              TextFieldInput(
                 hintText: 'Enter your email',
                 textInputType: TextInputType.emailAddress,
+                color: inputColor,
                 // textEditingController: _emailController,
               ),
               const SizedBox(
                 height: 12,
               ),
-              const TextFieldInput(
+              TextFieldInput(
                 hintText: 'Enter your password',
                 textInputType: TextInputType.text,
                 // textEditingController: _passwordController,
                 isPassword: true,
+                color: inputColor,
               ),
               const SizedBox(
                 height: 12,

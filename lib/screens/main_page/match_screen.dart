@@ -18,10 +18,12 @@ class MatchScreen extends StatelessWidget {
             floating: false,
             backgroundColor: whiteColor,
 
-            title: Center(
-              child: Text(
-                'Все матчи',
-                style: theme.titleSmall,
+            title: Expanded(
+              child: Center(
+                child: Text(
+                  'Все матчи',
+                  style: theme.titleSmall,
+                ),
               ),
             ),
             // другие настройки flexibleSpace

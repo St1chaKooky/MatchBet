@@ -128,7 +128,7 @@ class MatchWidget extends StatelessWidget {
                 ButtonLitleWidget(
                   width: 120,
                   onTap: () {
-                    AutoRouter.of(context).push(MainRoute());
+                    AutoRouter.of(context).popAndPush((MainRoute()));
                   },
                   buttonText: 'Прогнозы',
                   colorFill: whiteColor,
