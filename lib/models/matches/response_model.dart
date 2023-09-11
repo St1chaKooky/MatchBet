@@ -1,92 +1,132 @@
-// class ResponseMatchesModel {
-//   String? get;
-//   Parameters? parameters;
-//   List<Null>? errors;
-//   int? results;
-//   Paging? paging;
-//   List? response;
-//
-//   ResponseMatchesModel(
-//       {this.get,
-//       this.parameters,
-//       this.errors,
-//       this.results,
-//       this.paging,
-//       this.response});
-//
-//   ResponseMatchesModel.fromJson(Map<String, dynamic> json) {
-//     get = json['get'];
-//     parameters = json['parameters'] != null
-//         ? new Parameters.fromJson(json['parameters'])
-//         : null;
-//     if (json['errors'] != null) {
-//       errors = <Null>[];
-//       json['errors'].forEach((v) {
-//         errors!.add(new Null.fromJson(v));
-//       });
-//     }
-//     results = json['results'];
-//     paging =
-//         json['paging'] != null ? new Paging.fromJson(json['paging']) : null;
-//     if (json['response'] != null) {
-//       response = [];
-//       json['response'].forEach((v) {
-//         response!.add(Null.fromJson(v));
-//       });
-//     }
-//   }
-//
-//   Map<String, dynamic> toJson() {
-//     final Map<String, dynamic> data = new Map<String, dynamic>();
-//     data['get'] = this.get;
-//     if (this.parameters != null) {
-//       data['parameters'] = this.parameters!.toJson();
-//     }
-//     if (this.errors != null) {
-//       data['errors'] = this.errors!.map((v) => v.toJson()).toList();
-//     }
-//     data['results'] = this.results;
-//     if (this.paging != null) {
-//       data['paging'] = this.paging!.toJson();
-//     }
-//     if (this.response != null) {
-//       data['response'] = this.response!.map((v) => v.toJson()).toList();
-//     }
-//     return data;
-//   }
-// }
-//
-// class Parameters {
-//   String? live;
-//
-//   Parameters({this.live});
-//
-//   Parameters.fromJson(Map<String, dynamic> json) {
-//     live = json['live'];
-//   }
-//
-//   Map<String, dynamic> toJson() {
-//     final Map<String, dynamic> data = new Map<String, dynamic>();
-//     data['live'] = this.live;
-//     return data;
-//   }
-// }
-//
-// class Paging {
-//   int? current;
-//   int? total;
-//
-//   Paging({this.current, this.total});
-//
-//   Paging.fromJson(Map<String, dynamic> json) {
-//     current = json['current'];
-//     total = json['total'];
-//   }
-//
-//   Map<String, dynamic> toJson() {
-//     final Map<String, dynamic> data = new Map<String, dynamic>();
-//     data['current'] = this.current;
-//     data['total'] = this.total;
-//     return data;
-//   }
-// }
+import 'package:match_bet/models/matches/score_model.dart';
+import 'package:match_bet/models/matches/tems_model.dart';
+
+import 'fixture_model.dart';
+import 'goals_model.dart';
+import 'league_model.dart';
+
+class ResponseMatchesModel {
+  String? get;
+  Parameters? parameters;
+  List? errors;
+  int? results;
+  Paging? paging;
+  List<ResponseListModel>? response;
+
+  ResponseMatchesModel(
+      {this.get,
+      this.parameters,
+      this.errors,
+      this.results,
+      this.paging,
+      this.response});
+
+  ResponseMatchesModel.fromJson(Map<String, dynamic> json) {
+    get = json['get'];
+    parameters = json['parameters'] != null
+        ? Parameters.fromJson(json['parameters'])
+        : null;
+    errors = json['errors'];
+    results = json['results'];
+    paging = json['paging'] != null ? Paging.fromJson(json['paging']) : null;
+    response = json['response'] != null
+        ? List<ResponseListModel>.from(
+            json['response'].map((x) => ResponseListModel.fromJson(x)))
+        : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['get'] = get;
+    if (parameters != null) {
+      data['parameters'] = parameters!.toJson();
+    }
+    if (errors != null) {
+      data['errors'] = errors!.toList();
+    }
+    data['results'] = results;
+    if (paging != null) {
+      data['paging'] = paging!.toJson();
+    }
+    if (response != null) {
+      data['response'] = response!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class Parameters {
+  String? live;
+
+  Parameters({this.live});
+
+  Parameters.fromJson(Map<String, dynamic> json) {
+    live = json['live'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['live'] = live;
+    return data;
+  }
+}
+
+class Paging {
+  int? current;
+  int? total;
+
+  Paging({this.current, this.total});
+
+  Paging.fromJson(Map<String, dynamic> json) {
+    current = json['current'];
+    total = json['total'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['current'] = current;
+    data['total'] = total;
+    return data;
+  }
+}
+
+class ResponseListModel {
+  Fixture? fixture;
+  League? league;
+  Teams? teams;
+  Goals? goals;
+  Score? score;
+  ResponseListModel(
+      {this.fixture, this.league, this.teams, this.goals, this.score});
+
+  factory ResponseListModel.fromJson(Map<String, dynamic> json) {
+    return ResponseListModel(
+      fixture:
+          json['fixture'] != null ? Fixture.fromJson(json['fixture']) : null,
+      league: json['league'] != null ? League.fromJson(json['league']) : null,
+      teams: json['teams'] != null ? Teams.fromJson(json['teams']) : null,
+      goals: json['goals'] != null ? Goals.fromJson(json['goals']) : null,
+      score: json['score'] != null ? Score.fromJson(json['score']) : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (fixture != null) {
+      data['fixture'] = fixture!.toJson();
+    }
+    if (league != null) {
+      data['league'] = league!.toJson();
+    }
+    if (teams != null) {
+      data['teams'] = teams!.toJson();
+    }
+    if (goals != null) {
+      data['goals'] = goals!.toJson();
+    }
+    if (score != null) {
+      data['score'] = score!.toJson();
+    }
+    return data;
+  }
+}

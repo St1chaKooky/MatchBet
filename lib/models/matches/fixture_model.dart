@@ -24,8 +24,7 @@ class Fixture {
     timezone = json['timezone'];
     date = json['date'];
     timestamp = json['timestamp'];
-    periods =
-        json['periods'] != null ? Periods.fromJson(json['periods']) : null;
+    periods = json['periods'] != null ? Periods.fromJson(json['periods']) : null;
     venue = json['venue'] != null ? Venue.fromJson(json['venue']) : null;
     status = json['status'] != null ? Status.fromJson(json['status']) : null;
   }
