@@ -1,24 +1,21 @@
-
-
 import 'fixture_model.dart';
 import 'goals_model.dart';
 import 'league_model.dart';
 import 'score_model.dart';
 import 'tems_model.dart';
 
-class ResponseListModel {
+class MatchModel {
   Fixture? fixture;
   League? league;
   Teams? teams;
   Goals? goals;
   Score? score;
-  ResponseListModel(
-      {this.fixture, this.league, this.teams, this.goals, this.score});
+  MatchModel({this.fixture, this.league, this.teams, this.goals, this.score});
 
-  factory ResponseListModel.fromJson(Map<String, dynamic> json) {
-    return ResponseListModel(
+  factory MatchModel.fromJson(Map<String, dynamic> json) {
+    return MatchModel(
       fixture:
-      json['fixture'] != null ? Fixture.fromJson(json['fixture']) : null,
+          json['fixture'] != null ? Fixture.fromJson(json['fixture']) : null,
       league: json['league'] != null ? League.fromJson(json['league']) : null,
       teams: json['teams'] != null ? Teams.fromJson(json['teams']) : null,
       goals: json['goals'] != null ? Goals.fromJson(json['goals']) : null,
@@ -44,4 +41,5 @@ class ResponseListModel {
       data['score'] = score!.toJson();
     }
     return data;
-  }}
+  }
+}

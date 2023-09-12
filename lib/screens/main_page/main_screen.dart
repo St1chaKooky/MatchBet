@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import '../../repositories/api/api.dart';
+import 'package:match_bet/repositories/methods/api_methods/api_methods.dart';
 import '../../utils/colors.dart';
 import '../../widgets/button_litle.dart';
 import '../../widgets/input.dart';
@@ -95,7 +95,7 @@ class _MainScreenState extends State<MainScreen> {
               ),
               ButtonLitleWidget(
                 onTap: () => setState(() {
-                  ApiMeneger().getApi();
+                  ApiMethods().getData();
                 }),
                 buttonText: 'Матчи',
                 colorFill: primaryColor,

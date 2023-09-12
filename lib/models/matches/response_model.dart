@@ -1,15 +1,14 @@
+import 'match_model.dart';
 
-import 'response_list_model.dart';
-
-class ResponseMatchesModel {
+class MyResponse {
   String? get;
   Parameters? parameters;
   List? errors;
   int? results;
   Paging? paging;
-  List<ResponseListModel>? response;
+  List<MatchModel>? response;
 
-  ResponseMatchesModel(
+  MyResponse(
       {this.get,
       this.parameters,
       this.errors,
@@ -17,7 +16,7 @@ class ResponseMatchesModel {
       this.paging,
       this.response});
 
-  ResponseMatchesModel.fromJson(Map<String, dynamic> json) {
+  MyResponse.fromJson(Map<String, dynamic> json) {
     get = json['get'];
     parameters = json['parameters'] != null
         ? Parameters.fromJson(json['parameters'])
@@ -26,8 +25,8 @@ class ResponseMatchesModel {
     results = json['results'];
     paging = json['paging'] != null ? Paging.fromJson(json['paging']) : null;
     response = json['response'] != null
-        ? List<ResponseListModel>.from(
-            json['response'].map((x) => ResponseListModel.fromJson(x)))
+        ? List<MatchModel>.from(
+            json['response'].map((x) => MatchModel.fromJson(x)))
         : null;
   }
 
@@ -85,6 +84,3 @@ class Paging {
     return data;
   }
 }
-
-
-
