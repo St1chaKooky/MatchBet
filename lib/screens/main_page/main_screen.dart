@@ -1,11 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:match_bet/bloc/league/league_list_bloc.dart';
+import 'package:match_bet/models/matches/match_model.dart';
 import 'package:match_bet/repositories/methods/api_methods/api_methods.dart';
 import '../../utils/colors.dart';
 import '../../widgets/button_litle.dart';
 import '../../widgets/input.dart';
 import '../../widgets/list_prognoz.dart';
 import '../../widgets/list_title.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
 class MainScreen extends StatefulWidget {
@@ -16,7 +19,17 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  final _leagueListBloc = LeagueListBloc(ApiMethods());
+
+// Переменная для хранения результата асинхронной операции
+
   bool f = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _leagueListBloc.add(LoadLeagueList());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,18 +106,6 @@ class _MainScreenState extends State<MainScreen> {
               const SizedBox(
                 width: 10,
               ),
-              ButtonLitleWidget(
-                onTap: () => setState(() {
-                  ApiMethods().getData();
-                }),
-                buttonText: 'Матчи',
-                colorFill: primaryColor,
-                colorText: whiteColor,
-              ),
-              // const SizedBox(
-              //   width: 50,
-              // ),
-              // const Text('Сегодня'),
             ],
           ),
         ),
@@ -113,10 +114,46 @@ class _MainScreenState extends State<MainScreen> {
             height: 18,
           ),
         ),
-        SliverList.builder(
-            itemCount: 20,
-            itemBuilder: (context, i) =>
-                f ? const ListPrognozWidget() : const ListTitleWidget()),
+        f
+            ? SliverList.builder(
+                itemCount: 10,
+                itemBuilder: (context, i) {
+                  return ListPrognozWidget();
+                },
+              )
+            : BlocBuilder<LeagueListBloc, LeagueListState>(
+                bloc: _leagueListBloc,
+                builder: (context, state) {
+                  if (state is LeagueListLoaded) {
+                    return SliverList.builder(
+                        itemCount: state.leagueList.length,
+                        itemBuilder: (context, i) {
+                          final listMatches = state.leagueList[
+                              i]; // Список наших моделей, [fixture, legue...]
+                          final leagueName = listMatches.isNotEmpty
+                              ? listMatches.first.league?.name
+                              : ' ';
+                          final leagueCountry = listMatches.isNotEmpty
+                              ? listMatches.first.league?.country
+                              : ' ';
+                          final leagueFlag = listMatches.isNotEmpty
+                              ? listMatches.first.league?.flag
+                              : ' ';
+                          return ListTitleWidget(
+                            flag: leagueFlag ?? ' ',
+                            country: leagueCountry ?? '',
+                            nameLeague: leagueName ?? "",
+                            matchesList: listMatches,
+                          );
+                        });
+                  }
+                  return Center(
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      color: primaryColor,
+                    ),
+                  );
+                })
       ],
     ));
   }

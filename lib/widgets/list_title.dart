@@ -1,11 +1,28 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:match_bet/models/matches/match_model.dart';
 import 'package:match_bet/utils/colors.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
 import '../router/router.dart';
 
-class ListTitleWidget extends StatelessWidget {
-  const ListTitleWidget({super.key});
+class ListTitleWidget extends StatefulWidget {
+  final String flag;
+  final String country;
+  final String nameLeague;
+  final List<MatchModel> matchesList;
+  const ListTitleWidget(
+      {super.key,
+      required this.flag,
+      required this.country,
+      required this.nameLeague,
+      required this.matchesList});
+
+  @override
+  State<ListTitleWidget> createState() => _ListTitleWidgetState();
+}
+
+class _ListTitleWidgetState extends State<ListTitleWidget> {
+  List<_MatchList> listWidgets = [];
 
   @override
   Widget build(BuildContext context) {
@@ -37,30 +54,55 @@ class ListTitleWidget extends StatelessWidget {
           tilePadding: const EdgeInsets.symmetric(horizontal: 18),
           // childrenPadding: const EdgeInsets.symmetric(horizontal: 18),
           title: Row(children: [
-            Image.asset(
-              'images/argentina.png',
-            ),
+            widget.flag != ' '
+                ? SvgPicture.network(
+                    widget.flag,
+                    width: 25,
+                    height: 25,
+                    placeholderBuilder: (BuildContext context) => SizedBox(
+                      width: 15, // Установите желаемую ширину
+                      height: 15, // Установите желаемую высоту
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        color: primaryColor,
+                      ),
+                    ),
+                  )
+                : Container(),
             const SizedBox(
               width: 15,
             ),
             Text(
-              'Аргентина. Кубок. 1/16 финалаgg',
+              '${widget.country}. ${widget.nameLeague}',
               style: theme.textTheme.labelSmall,
             )
           ]),
-          children: [
-            _MatchList(),
-            _MatchList(),
-            _MatchList(),
-          ],
+          children: listWidgets,
         ));
   }
 }
 
-class _MatchList extends StatelessWidget {
+class _MatchList extends StatefulWidget {
+  final String home;
+  final String away;
+  final String time;
+
   const _MatchList({
     super.key,
+    required this.home,
+    required this.away,
+    required this.time,
   });
+
+  @override
+  State<_MatchList> createState() => _MatchListState();
+}
+
+class _MatchListState extends State<_MatchList> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

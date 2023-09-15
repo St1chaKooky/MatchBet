@@ -1,49 +1,33 @@
 import 'package:match_bet/models/matches/match_model.dart';
 
-import '../../../models/matches/response_model.dart';
 import '../../api/api.dart';
 
 class ApiMethods {
-  Future<List<MatchModel>> getData() async {
+  Future<List<List<MatchModel>>> getLegueMap() async {
     try {
-      final myResponse =
+      final matchModels =
           await ApiMeneger().getApi(); //получаем наш джсон в виде обьекта
-      if (myResponse is MyResponse) {
-        final matchModels = myResponse
-            .response; // масив Моделей матча [fixture,league,goals,score...] (.response означает что мы оброщаемся к полю респонс)
-        if (matchModels != null) {
-          // Итерируемся по списку matchModels , каждый элемент это
-          // {
-          // "fixture": {},
-          // "league": {},
-          // "teams": {},
-          // "goals": {},
-          // "score": {}
-          // }
-
-          for (var matchModel in matchModels) {
-            final league = matchModel.league;
-            final teams = matchModel.teams;
-            final goals = matchModel.goals;
-            final fixture = matchModel.fixture;
-            if (fixture != null) {
-              // Выводим значения полей fixture
-              print('ID: ${fixture.id}');
-              print('Referee: ${fixture.referee}');
-              print('Timezone: ${fixture.timezone}');
-              print('Date: ${fixture.date}');
-              print('Timestamp: ${fixture.timestamp}');
-              print('Periods: ${fixture.periods}');
-              print('Venue: ${fixture.venue}');
-              print('Status: ${fixture.status}');
-            }
+      var matchesByLeague = <int, List<MatchModel>>{};
+      for (var matchModel in matchModels) {
+        final league = matchModel.league;
+        // final teams = matchModel.teams;
+        // final goals = matchModel.goals;
+        // final fixture = matchModel.fixture;
+        if (league != null) {
+          int? leagueId = league.id;
+          // Проверяем, существует ли уже подмассив для данной лиги
+          if ((matchesByLeague[leagueId] == null) && (leagueId != null)) {
+            // Если нет, создаем новый пустой подмассив
+            matchesByLeague[leagueId] = [];
           }
-        } else {
-          print('Список matchModels пуст');
+          // Добавляем текущий матч в подмассив для данной лиги
+
+          matchesByLeague[leagueId]!.add(matchModel);
+          // Используем безопасное приведение типа
         }
-      } else {
-        print('Ошибка: Не удалось получить данные');
       }
+      var result = matchesByLeague.values.toList();
+      return result;
     } catch (error) {
       print('Ошибка при загрузке данных: $error');
     }
