@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:match_bet/bloc/league/league_list_bloc.dart';
-import 'package:match_bet/models/matches/match_model.dart';
 import 'package:match_bet/repositories/methods/api_methods/api_methods.dart';
 import '../../utils/colors.dart';
 import '../../widgets/button_litle.dart';
@@ -125,32 +124,14 @@ class _MainScreenState extends State<MainScreen> {
                 bloc: _leagueListBloc,
                 builder: (context, state) {
                   if (state is LeagueListLoaded) {
-                    return SliverList.builder(
-                        itemCount: state.leagueList.length,
-                        itemBuilder: (context, i) {
-                          final listMatches = state.leagueList[
-                              i]; // Список наших моделей, [fixture, legue...]
-                          final leagueName = listMatches.isNotEmpty
-                              ? listMatches.first.league?.name
-                              : ' ';
-                          final leagueCountry = listMatches.isNotEmpty
-                              ? listMatches.first.league?.country
-                              : ' ';
-                          final leagueFlag = listMatches.isNotEmpty
-                              ? listMatches.first.league?.flag
-                              : ' ';
-                          return ListTitleWidget(
-                            flag: leagueFlag ?? ' ',
-                            country: leagueCountry ?? '',
-                            nameLeague: leagueName ?? "",
-                            matchesList: listMatches,
-                          );
-                        });
+                    return ListTitleWidget();
                   }
-                  return Center(
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2,
-                      color: primaryColor,
+                  return SliverToBoxAdapter(
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        color: primaryColor,
+                      ),
                     ),
                   );
                 })
