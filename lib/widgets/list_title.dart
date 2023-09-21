@@ -9,18 +9,22 @@ import '../router/router.dart';
 import 'package:intl/intl.dart';
 
 class ListTitleWidget extends StatefulWidget {
-  const ListTitleWidget({super.key});
+  final bool live;
+
+  ListTitleWidget({Key? key, required this.live}) : super(key: key);
 
   @override
   State<ListTitleWidget> createState() => _ListTitleWidgetState();
 }
 
 class _ListTitleWidgetState extends State<ListTitleWidget> {
-  final _leagueListBloc = LeagueListBloc(ApiMethods());
+  late LeagueListBloc _leagueListBloc; // Переменную объявляем здесь
 
   @override
   void initState() {
     super.initState();
+    _leagueListBloc =
+        LeagueListBloc(ApiMethods(live: widget.live)); // Инициализируем здесь
     _leagueListBloc.add(LoadLeagueList());
   }
 
@@ -126,7 +130,7 @@ class _ListTitleWidgetState extends State<ListTitleWidget> {
                           width: 15,
                         ),
                         Text(
-                          '$leagueCountry. ${limitedName}',
+                          '$leagueCountry. $limitedName',
                           style: theme.textTheme.labelSmall,
                         ),
                       ]),
@@ -190,7 +194,7 @@ class _MatchListState extends State<_MatchList> {
             const SizedBox(
               width: 15,
             ),
-            Text(widget.time ?? " "),
+            Text(widget.time),
             const SizedBox(
               width: 15,
             ),

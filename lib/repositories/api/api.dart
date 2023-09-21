@@ -3,8 +3,12 @@ import 'package:match_bet/models/matches/match_model.dart';
 import '../../models/matches/response_model.dart';
 
 class ApiMeneger {
+  bool live;
+  ApiMeneger({required this.live});
   final Dio dio = Dio();
-  final String apiUrl = 'https://v3.football.api-sports.io/fixtures?live=all';
+  String get apiUrl => live
+      ? 'https://v3.football.api-sports.io/fixtures?live=all'
+      : "https://v3.football.api-sports.io/fixtures?date=2023-09-17";
 
   Future<List<MatchModel>> getApi() async {
     dio.options.headers = {
@@ -13,7 +17,8 @@ class ApiMeneger {
     };
 
     try {
-      final response = await dio.get(apiUrl, queryParameters: {'live': 'all'});
+      final response = await dio.get(apiUrl,
+          queryParameters: live ? {'live': 'all'} : {'date': '2023-09-15'});
 
       if (response.statusCode == 200) {
         final responseData = response.data;
@@ -30,7 +35,7 @@ class ApiMeneger {
         }
       }
     } catch (error) {
-      print('Ошибка при загрузке данных: $error');
+      print('Ошибка при загрузке данных vcvc: $error');
     }
 
     return [];

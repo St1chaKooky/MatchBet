@@ -3,10 +3,12 @@ import 'package:match_bet/models/matches/match_model.dart';
 import '../../api/api.dart';
 
 class ApiMethods {
+  bool live;
+  ApiMethods({required this.live});
   Future<List<List<MatchModel>>> getLegueMap() async {
     try {
-      final matchModels =
-          await ApiMeneger().getApi(); //получаем наш джсон в виде обьекта
+      final matchModels = await ApiMeneger(live: live)
+          .getApi(); //получаем наш джсон в виде List<List>
       var matchesByLeague = <int, List<MatchModel>>{};
       for (var matchModel in matchModels) {
         final league = matchModel.league;
