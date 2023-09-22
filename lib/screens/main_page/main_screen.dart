@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:match_bet/bloc/league/league_list_bloc.dart';
 import 'package:match_bet/bloc/live/live_bloc.dart';
 import 'package:match_bet/repositories/methods/api_methods/api_methods.dart';
+import 'package:match_bet/widgets/list_title_live.dart';
 import '../../utils/colors.dart';
 import '../../widgets/button_litle.dart';
 import '../../widgets/input.dart';
 import '../../widgets/list_prognoz.dart';
-import '../../widgets/list_title.dart';
+import '../../widgets/list_title_league.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
@@ -19,8 +20,8 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final _allleagueListBloc = LeagueListBloc(ApiMethods(live: false));
-  final _liveleagueListBloc = LiveBloc(ApiMethods(live: true));
+  final _allleagueListBloc = LeagueListBloc(ApiMethods());
+  final _liveleagueListBloc = LiveBloc(ApiMethods());
 
 // Переменная для хранения результата асинхронной операции
 
@@ -100,6 +101,7 @@ class _MainScreenState extends State<MainScreen> {
               ButtonLitleWidget(
                 onTap: () => setState(() {
                   index = 1;
+                  ApiMethods().getMatchDetails(1037713);
                 }),
                 buttonText: 'Матчи',
                 colorFill: index == 1 ? primaryColor : whiteColor,
@@ -111,6 +113,7 @@ class _MainScreenState extends State<MainScreen> {
               ButtonLitleWidget(
                 onTap: () => setState(() {
                   index = 2;
+                  ApiMethods().getMatchDetails(1037713);
                 }),
                 buttonText: 'Live',
                 colorFill: index == 2 ? primaryColor : whiteColor,
@@ -137,9 +140,7 @@ class _MainScreenState extends State<MainScreen> {
                     builder: (context, state) {
                       if (state is LeagueListLoaded) {
                         print(1);
-                        return ListTitleWidget(
-                          live: false,
-                        );
+                        return ListTitleWidget();
                       }
                       return SliverToBoxAdapter(
                         child: Center(
@@ -157,9 +158,7 @@ class _MainScreenState extends State<MainScreen> {
                       if (state is LiveLoaded) {
                         print(2);
 
-                        return ListTitleWidget(
-                          live: true,
-                        );
+                        return ListTitleLiveWidget();
                       }
                       return SliverToBoxAdapter(
                         child: Center(

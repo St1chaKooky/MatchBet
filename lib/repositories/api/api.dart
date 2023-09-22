@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:match_bet/models/matches/match_model.dart';
-import '../../models/matches/response_model.dart';
+import 'package:match_bet/models/response_models/match_model.dart';
+import '../../models/response_models/response_model.dart';
 
 class ApiMeneger {
   bool live;
@@ -39,5 +39,34 @@ class ApiMeneger {
     }
 
     return [];
+  }
+}
+
+class ApiMatch {
+  final Dio dio = Dio();
+
+  Future<MatchModel> getMatch(id) async {
+    String apiUrl = "https://v3.football.api-sports.io/fixtures?id=$id";
+    dio.options.headers = {
+      'x-rapidapi-host': 'v3.football.api-sports.io',
+      'x-rapidapi-key': '226d4ca9c02a2c65786d14b10ea0f756',
+    };
+    try {
+      final response = await dio.get(apiUrl, queryParameters: {'id': '$id'});
+      if (response.statusCode == 200) {
+        final responseData = response.data;
+        if (responseData is Map<String, dynamic>) {
+          final myResponse = MyResponse.fromJson(responseData);
+          final matchModels = myResponse.response;
+          if (matchModels != null && matchModels.isNotEmpty) {
+            // Возвращаем первый элемент, так как предполагается, что это будет единственный матч с указанным id
+            return matchModels[0];
+          }
+        }
+      }
+    } catch (err) {
+      print('Error: ${err}');
+    }
+    return MatchModel(); // Возвращаем null в случае ошибки или отсутствия матча
   }
 }

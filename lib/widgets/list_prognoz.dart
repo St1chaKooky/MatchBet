@@ -13,7 +13,7 @@ class ListPrognozWidget extends StatelessWidget {
     final theme = Theme.of(context).textTheme;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 18).copyWith(bottom: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 18).copyWith(bottom: 10),
       child: Container(
         decoration: BoxDecoration(
           color: whiteColor,

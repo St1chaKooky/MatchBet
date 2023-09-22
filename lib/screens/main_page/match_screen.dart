@@ -35,7 +35,10 @@ class MatchScreen extends StatelessWidget {
                 const EdgeInsets.symmetric(horizontal: 15).copyWith(top: 18),
             sliver: SliverList(
               delegate: SliverChildListDelegate([
-                MatchWidget(theme: theme),
+                MatchWidget(
+                  theme: theme,
+                  id: 32,
+                ),
               ]),
             ),
           ),

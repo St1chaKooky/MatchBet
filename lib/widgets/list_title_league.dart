@@ -9,9 +9,9 @@ import '../router/router.dart';
 import 'package:intl/intl.dart';
 
 class ListTitleWidget extends StatefulWidget {
-  final bool live;
-
-  ListTitleWidget({Key? key, required this.live}) : super(key: key);
+  ListTitleWidget({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<ListTitleWidget> createState() => _ListTitleWidgetState();
@@ -23,8 +23,7 @@ class _ListTitleWidgetState extends State<ListTitleWidget> {
   @override
   void initState() {
     super.initState();
-    _leagueListBloc =
-        LeagueListBloc(ApiMethods(live: widget.live)); // Инициализируем здесь
+    _leagueListBloc = LeagueListBloc(ApiMethods()); // Инициализируем здесь
     _leagueListBloc.add(LoadLeagueList());
   }
 
@@ -60,10 +59,14 @@ class _ListTitleWidgetState extends State<ListTitleWidget> {
                   String away = '';
                   String time = '';
                   String formattedTime = '';
+                  int id = 0;
                   if (listMatches[i].teams?.home?.name != null &&
                       listMatches[i].teams?.away?.name != null) {
                     home = listMatches[i].teams!.home!.name!;
                     away = listMatches[i].teams!.away!.name!;
+                  }
+                  if (listMatches[i].fixture?.id != null) {
+                    id = listMatches[i].fixture!.id!;
                   }
                   if (listMatches[i].fixture?.date != null) {
                     time = listMatches[i].fixture!.date!;
@@ -80,7 +83,10 @@ class _ListTitleWidgetState extends State<ListTitleWidget> {
                     formattedTime = outputFormat.format(dateTime);
                   }
                   listWidgets.add(_MatchList(
-                      homeName: home, awayName: away, time: formattedTime));
+                      id: id,
+                      homeName: home,
+                      awayName: away,
+                      time: formattedTime));
                 }
                 return Container(
                     margin: const EdgeInsets.symmetric(horizontal: 18)
@@ -138,7 +144,7 @@ class _ListTitleWidgetState extends State<ListTitleWidget> {
                     ));
               });
         }
-        return SliverToBoxAdapter(
+        return SliverFillRemaining(
           child: Center(
             child: CircularProgressIndicator(
               strokeWidth: 2,
@@ -155,9 +161,11 @@ class _MatchList extends StatefulWidget {
   final String homeName;
   final String awayName;
   final String time;
+  final int id;
 
   const _MatchList({
     super.key,
+    required this.id,
     required this.homeName,
     required this.awayName,
     required this.time,

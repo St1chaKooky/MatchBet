@@ -1,20 +1,16 @@
-import 'package:match_bet/models/matches/match_model.dart';
+import 'package:match_bet/models/response_models/match_model.dart';
 
 import '../../api/api.dart';
 
 class ApiMethods {
-  bool live;
-  ApiMethods({required this.live});
-  Future<List<List<MatchModel>>> getLegueMap() async {
+  Future<List<List<MatchModel>>> getLegueMap(live) async {
     try {
       final matchModels = await ApiMeneger(live: live)
           .getApi(); //получаем наш джсон в виде List<List>
       var matchesByLeague = <int, List<MatchModel>>{};
       for (var matchModel in matchModels) {
         final league = matchModel.league;
-        // final teams = matchModel.teams;
-        // final goals = matchModel.goals;
-        // final fixture = matchModel.fixture;
+
         if (league != null) {
           int? leagueId = league.id;
           // Проверяем, существует ли уже подмассив для данной лиги
@@ -34,5 +30,16 @@ class ApiMethods {
       print('Ошибка при загрузке данных: $error');
     }
     return []; // Возвращаем пустой список по умолчанию
+  }
+
+  Future<MatchModel> getMatchDetails(id) async {
+    try {
+      final matchModel = await ApiMatch().getMatch(id);
+
+      return matchModel;
+    } catch (err) {
+      print('Err : ${err}');
+    }
+    return MatchModel();
   }
 }
