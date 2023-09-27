@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:match_bet/models/response_models/match_model.dart';
+import 'package:match_bet/models/matches/response_models/match_model.dart';
 import 'package:meta/meta.dart';
 import 'package:match_bet/repositories/methods/api_methods/api_methods.dart';
 

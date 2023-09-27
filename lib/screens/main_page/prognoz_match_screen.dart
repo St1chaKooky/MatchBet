@@ -41,8 +41,8 @@ class PrognozScreen extends StatelessWidget {
                   height: 18,
                 ),
                 MatchWidget(
+                  id: 1,
                   theme: theme,
-                  id: 32,
                 ),
                 const SizedBox(
                   height: 18,

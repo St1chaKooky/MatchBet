@@ -34,9 +34,15 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     MatchRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<MatchRouteArgs>(
+          orElse: () => MatchRouteArgs(id: pathParams.getInt('id')));
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const MatchScreen(),
+        child: MatchScreen(
+          key: args.key,
+          id: args.id,
+        ),
       );
     },
     MatchRouteAdd.name: (routeData) {
@@ -118,16 +124,40 @@ class MainRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [MatchScreen]
-class MatchRoute extends PageRouteInfo<void> {
-  const MatchRoute({List<PageRouteInfo>? children})
-      : super(
+class MatchRoute extends PageRouteInfo<MatchRouteArgs> {
+  MatchRoute({
+    Key? key,
+    required int id,
+    List<PageRouteInfo>? children,
+  }) : super(
           MatchRoute.name,
+          args: MatchRouteArgs(
+            key: key,
+            id: id,
+          ),
+          rawPathParams: {'id': id},
           initialChildren: children,
         );
 
   static const String name = 'MatchRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<MatchRouteArgs> page = PageInfo<MatchRouteArgs>(name);
+}
+
+class MatchRouteArgs {
+  const MatchRouteArgs({
+    this.key,
+    required this.id,
+  });
+
+  final Key? key;
+
+  final int id;
+
+  @override
+  String toString() {
+    return 'MatchRouteArgs{key: $key, id: $id}';
+  }
 }
 
 /// generated route for

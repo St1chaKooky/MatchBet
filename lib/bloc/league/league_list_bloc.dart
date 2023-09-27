@@ -1,6 +1,6 @@
 // ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
-import 'package:match_bet/models/response_models/match_model.dart';
+
 import 'package:match_bet/repositories/methods/api_methods/api_methods.dart';
 import 'package:meta/meta.dart';
 

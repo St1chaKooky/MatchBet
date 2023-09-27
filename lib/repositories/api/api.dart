@@ -1,14 +1,17 @@
 import 'package:dio/dio.dart';
-import 'package:match_bet/models/response_models/match_model.dart';
-import '../../models/response_models/response_model.dart';
+
+import 'package:match_bet/models/matches/response_models/match_model.dart';
+import 'package:match_bet/models/matches/response_models/response_model.dart';
+import 'package:match_bet/repositories/methods/algortm/date.dart';
 
 class ApiMeneger {
   bool live;
   ApiMeneger({required this.live});
   final Dio dio = Dio();
+  final String date = DataNow().getData();
   String get apiUrl => live
       ? 'https://v3.football.api-sports.io/fixtures?live=all'
-      : "https://v3.football.api-sports.io/fixtures?date=2023-09-17";
+      : "https://v3.football.api-sports.io/fixtures?date=$date";
 
   Future<List<MatchModel>> getApi() async {
     dio.options.headers = {
@@ -18,7 +21,7 @@ class ApiMeneger {
 
     try {
       final response = await dio.get(apiUrl,
-          queryParameters: live ? {'live': 'all'} : {'date': '2023-09-15'});
+          queryParameters: live ? {'live': 'all'} : {'date': date});
 
       if (response.statusCode == 200) {
         final responseData = response.data;

@@ -4,9 +4,18 @@ import 'package:match_bet/utils/colors.dart';
 import '../../widgets/match_widget.dart';
 
 @RoutePage()
-class MatchScreen extends StatelessWidget {
-  const MatchScreen({Key? key}) : super(key: key);
+class MatchScreen extends StatefulWidget {
+  final int id;
+  const MatchScreen({
+    Key? key,
+    @PathParam('id') required this.id,
+  }) : super(key: key);
 
+  @override
+  State<MatchScreen> createState() => _MatchScreenState();
+}
+
+class _MatchScreenState extends State<MatchScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
@@ -18,29 +27,19 @@ class MatchScreen extends StatelessWidget {
             floating: false,
             backgroundColor: whiteColor,
 
-            title: Expanded(
-              child: Center(
-                child: Text(
-                  'Все матчи',
-                  style: theme.titleSmall,
-                ),
+            title: Center(
+              child: Text(
+                'Все матчи',
+                style: theme.titleSmall,
               ),
             ),
             // другие настройки flexibleSpace
 
             elevation: 0,
           ),
-          SliverPadding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 15).copyWith(top: 18),
-            sliver: SliverList(
-              delegate: SliverChildListDelegate([
-                MatchWidget(
-                  theme: theme,
-                  id: 32,
-                ),
-              ]),
-            ),
+          MatchWidget(
+            id: widget.id,
+            theme: theme,
           ),
         ],
       ),

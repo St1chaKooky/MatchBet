@@ -33,7 +33,7 @@ class AppRouter extends _$AppRouter {
         ]),
         AutoRoute(
           page: MatchRoute.page,
-          path: '/match',
+          path: '/match/:id',
         ),
         AutoRoute(
           page: MyBetRoute.page,

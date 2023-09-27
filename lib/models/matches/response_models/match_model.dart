@@ -23,6 +23,8 @@ class MatchModel {
     );
   }
 
+  get isNotEmpty => null;
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     if (fixture != null) {

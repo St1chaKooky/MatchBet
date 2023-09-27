@@ -1,4 +1,4 @@
-import 'package:match_bet/models/response_models/match_model.dart';
+import 'package:match_bet/models/matches/response_models/match_model.dart';
 
 import '../../api/api.dart';
 

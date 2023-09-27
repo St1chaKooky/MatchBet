@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
-// import 'package:intl/intl.dart';
 import 'package:match_bet/router/router.dart';
 
 import 'package:match_bet/utils/theme.dart';
 
 void main() {
-  // Ваша строка с датой и временем
-  final now = DateTime.now();
-  final timeZone = now.timeZoneName;
-  print(timeZone);
-
   runApp(const MyApp());
 }
 

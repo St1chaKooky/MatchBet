@@ -82,44 +82,48 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ),
         SliverToBoxAdapter(
-          child: Row(
-            children: [
-              const SizedBox(
-                width: 18,
-              ),
-              ButtonLitleWidget(
-                onTap: () => setState(() {
-                  index = 0;
-                }),
-                buttonText: 'Прогнозы',
-                colorFill: index == 0 ? primaryColor : whiteColor,
-                colorText: index == 0 ? whiteColor : textColor,
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              ButtonLitleWidget(
-                onTap: () => setState(() {
-                  index = 1;
-                  ApiMethods().getMatchDetails(1037713);
-                }),
-                buttonText: 'Матчи',
-                colorFill: index == 1 ? primaryColor : whiteColor,
-                colorText: index == 1 ? whiteColor : textColor,
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              ButtonLitleWidget(
-                onTap: () => setState(() {
-                  index = 2;
-                  ApiMethods().getMatchDetails(1037713);
-                }),
-                buttonText: 'Live',
-                colorFill: index == 2 ? primaryColor : whiteColor,
-                colorText: index == 2 ? whiteColor : textColor,
-              ),
-            ],
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                const SizedBox(
+                  width: 18,
+                ),
+                ButtonLitleWidget(
+                  onTap: () => setState(() {
+                    index = 0;
+                  }),
+                  buttonText: 'Прогнозы',
+                  colorFill: index == 0 ? primaryColor : whiteColor,
+                  colorText: index == 0 ? whiteColor : textColor,
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                ButtonLitleWidget(
+                  onTap: () => setState(() {
+                    index = 1;
+                  }),
+                  buttonText: 'Матчи',
+                  colorFill: index == 1 ? primaryColor : whiteColor,
+                  colorText: index == 1 ? whiteColor : textColor,
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                ButtonLitleWidget(
+                  onTap: () => setState(() {
+                    index = 2;
+                  }),
+                  buttonText: 'Live',
+                  colorFill: index == 2 ? primaryColor : whiteColor,
+                  colorText: index == 2 ? whiteColor : textColor,
+                ),
+                const SizedBox(
+                  width: 18,
+                ),
+              ],
+            ),
           ),
         ),
         const SliverToBoxAdapter(

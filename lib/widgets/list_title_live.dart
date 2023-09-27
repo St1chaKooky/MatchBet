@@ -2,11 +2,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:match_bet/bloc/live/live_bloc.dart';
+import 'package:match_bet/repositories/methods/algortm/date.dart';
 import 'package:match_bet/repositories/methods/api_methods/api_methods.dart';
 import 'package:match_bet/utils/colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../router/router.dart';
-import 'package:intl/intl.dart';
 
 class ListTitleLiveWidget extends StatefulWidget {
   ListTitleLiveWidget({
@@ -43,8 +43,8 @@ class _ListTitleLiveWidgetState extends State<ListTitleLiveWidget> {
                 final leagueName = listMatches.isNotEmpty
                     ? listMatches.first.league?.name
                     : ' ';
-                String limitedName = leagueName!.length > 23
-                    ? "${leagueName.substring(0, 20)}..."
+                String limitedName = leagueName!.length > 18
+                    ? "${leagueName.substring(0, 18)}..."
                     : leagueName; // Иначе оставляем строку без изменений
                 final leagueCountry = listMatches.isNotEmpty
                     ? listMatches.first.league?.country
@@ -58,32 +58,30 @@ class _ListTitleLiveWidgetState extends State<ListTitleLiveWidget> {
                   String home = '';
                   String away = '';
                   String time = '';
-                  String formattedTime = '';
+                  String date = '';
+                  int id = 0;
                   if (listMatches[i].teams?.home?.name != null &&
                       listMatches[i].teams?.away?.name != null) {
                     home = listMatches[i].teams!.home!.name!;
                     away = listMatches[i].teams!.away!.name!;
                   }
+                  if (listMatches[i].fixture?.id != null) {
+                    id = listMatches[i].fixture!.id!;
+                  }
                   if (listMatches[i].fixture?.date != null) {
                     time = listMatches[i].fixture!.date!;
-                    DateFormat inputFormat =
-                        DateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
-
-                    // Разбираем строку и преобразуем ее в объект DateTime
-                    DateTime dateTime = inputFormat.parse(time);
-
-                    // Создаем формат для вывода времени
-                    DateFormat outputFormat = DateFormat("HH:mm");
-
-                    // Форматируем объект DateTime и выводим только время
-                    formattedTime = outputFormat.format(dateTime);
+                    date = DataMatch(match: true).getData(time);
                   }
                   listWidgets.add(_MatchList(
-                      homeName: home, awayName: away, time: formattedTime));
+                    homeName: home,
+                    awayName: away,
+                    time: date,
+                    id: id,
+                  ));
                 }
                 return Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 18)
-                        .copyWith(bottom: 15),
+                    margin: const EdgeInsets.symmetric(horizontal: 15)
+                        .copyWith(bottom: 10),
                     decoration: BoxDecoration(
                       color: whiteColor,
                       borderRadius: BorderRadius.circular(7),
@@ -154,12 +152,13 @@ class _MatchList extends StatefulWidget {
   final String homeName;
   final String awayName;
   final String time;
+  final int id;
 
   const _MatchList({
-    super.key,
     required this.homeName,
     required this.awayName,
     required this.time,
+    required this.id,
   });
 
   @override
@@ -176,7 +175,7 @@ class _MatchListState extends State<_MatchList> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        AutoRouter.of(context).push(MatchRoute());
+        AutoRouter.of(context).push(MatchRoute(id: widget.id));
       },
       child: Container(
         height: 55,
