@@ -44,12 +44,21 @@ class ApiMethods {
     return MatchModel();
   }
 
-  Future<List<Bet>> getBets(id) async {
+  Future<List<Bet>?> getBets(id) async {
     try {
       final betModel = await ApiBet().getBet(id);
-      final bookmakers = betModel.bookmakers![0]; //[id,name,bets]
-      final List<Bet> bets = bookmakers.bets!; //bets[{},{},{}..]
-      return bets;
+      int index = 0;
+      final bookmakers = betModel.bookmakers;
+      if (bookmakers != null) {
+        for (int i = 0; i < bookmakers.length; i++) {
+          if (bookmakers[i].name == "1xBet") {
+            index = i;
+          }
+        }
+        final bookmaker = bookmakers[index];
+        final List<Bet>? bets = bookmaker.bets;
+        return bets;
+      }
     } catch (err) {
       print('Api Methods Error: ${err}');
     }

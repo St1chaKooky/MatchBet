@@ -7,7 +7,8 @@ import 'package:auto_route/auto_route.dart';
 
 @RoutePage()
 class MyBetScreen extends StatefulWidget {
-  const MyBetScreen({Key? key}) : super(key: key);
+  final int id;
+  const MyBetScreen({Key? key, required this.id}) : super(key: key);
 
   @override
   State<MyBetScreen> createState() => _MyBetScreenState();
@@ -35,7 +36,7 @@ class _MyBetScreenState extends State<MyBetScreen> {
         elevation: 0,
       ),
       BetWidget(
-        id: 1075292,
+        id: widget.id,
       )
     ]));
   }

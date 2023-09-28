@@ -30,6 +30,7 @@ class _MatchWidgetState extends State<MatchWidget> {
     super.initState();
     bloc = MatchBloc(ApiMethods(), widget.id);
     bloc.add(LoadMatch());
+    print(widget.id);
   }
 
   @override
@@ -136,7 +137,8 @@ class _MatchWidgetState extends State<MatchWidget> {
                           ButtonLitleWidget(
                             width: 150,
                             onTap: () {
-                              AutoRouter.of(context).push(MyBetRoute());
+                              AutoRouter.of(context)
+                                  .push(MyBetRoute(id: widget.id));
                             },
                             buttonText: 'Составить прогноз',
                             colorFill: primaryColor,

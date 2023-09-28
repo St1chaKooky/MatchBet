@@ -78,14 +78,15 @@ class ApiMatch {
 
 class ApiBet {
   final Dio dio = Dio();
-  Future<ResponseModel> getBet(int id) async {
-    String apiUrl = 'https://v3.football.api-sports.io/odds?fixture=$id';
+  Future<ResponseModel> getBet(id) async {
+    String apiUrl =
+        'https://v3.football.api-sports.io/odds?fixture=$id'; // id преобразован в строку
     dio.options.headers = {
       'x-rapidapi-host': 'v3.football.api-sports.io',
       'x-rapidapi-key': '226d4ca9c02a2c65786d14b10ea0f756',
     };
     try {
-      final response = await dio.get(apiUrl, queryParameters: {'fixture': id});
+      final response = await dio.get(apiUrl); // Убран queryParameters
       if (response.statusCode == 200) {
         final responseData = response.data;
         if (responseData is Map<String, dynamic>) {
@@ -98,7 +99,7 @@ class ApiBet {
         }
       }
     } catch (err) {
-      print('Errorуууууууу: ${err}');
+      print('Error: ${err}');
     }
     return ResponseModel();
   }

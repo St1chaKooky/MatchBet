@@ -1,12 +1,11 @@
 class Valuee {
-  int? value;
+  String? value;
   String? odd;
 
   Valuee({this.value, this.odd});
 
   Valuee.fromJson(Map<String, dynamic> json) {
-    value =
-        json['value'] != null ? int.tryParse(json['value'].toString()) : null;
+    value = json['value'];
     odd = json['odd'];
   }
 

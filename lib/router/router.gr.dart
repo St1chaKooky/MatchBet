@@ -46,9 +46,13 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     MyBetRoute.name: (routeData) {
+      final args = routeData.argsAs<MyBetRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const MyBetScreen(),
+        child: MyBetScreen(
+          key: args.key,
+          id: args.id,
+        ),
       );
     },
     MyPublicationRoute.name: (routeData) {
@@ -156,16 +160,39 @@ class MatchRouteArgs {
 
 /// generated route for
 /// [MyBetScreen]
-class MyBetRoute extends PageRouteInfo<void> {
-  const MyBetRoute({List<PageRouteInfo>? children})
-      : super(
+class MyBetRoute extends PageRouteInfo<MyBetRouteArgs> {
+  MyBetRoute({
+    Key? key,
+    required int id,
+    List<PageRouteInfo>? children,
+  }) : super(
           MyBetRoute.name,
+          args: MyBetRouteArgs(
+            key: key,
+            id: id,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'MyBetRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<MyBetRouteArgs> page = PageInfo<MyBetRouteArgs>(name);
+}
+
+class MyBetRouteArgs {
+  const MyBetRouteArgs({
+    this.key,
+    required this.id,
+  });
+
+  final Key? key;
+
+  final int id;
+
+  @override
+  String toString() {
+    return 'MyBetRouteArgs{key: $key, id: $id}';
+  }
 }
 
 /// generated route for
