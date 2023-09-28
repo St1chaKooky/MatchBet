@@ -1,8 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:match_bet/bloc/league/league_list_bloc.dart';
+import 'package:match_bet/repositories/methods/api_methods/api_methods.dart';
+import 'package:match_bet/widgets/list_title_league.dart';
 
 import '../../utils/colors.dart';
-import '../../widgets/list_title_add.dart';
 
 @RoutePage()
 class ListMatchScreen extends StatefulWidget {
@@ -13,6 +16,14 @@ class ListMatchScreen extends StatefulWidget {
 }
 
 class _ListMatchScreenState extends State<ListMatchScreen> {
+  final _allleagueListBloc = LeagueListBloc(ApiMethods());
+
+  @override
+  void initState() {
+    super.initState();
+    _allleagueListBloc.add(LoadLeagueList());
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
@@ -39,9 +50,23 @@ class _ListMatchScreenState extends State<ListMatchScreen> {
             height: 18,
           ),
         ),
-        SliverList.builder(
-            itemCount: 20,
-            itemBuilder: (context, i) => const ListTitleWidgetAdd()),
+        BlocBuilder<LeagueListBloc, LeagueListState>(
+          bloc: _allleagueListBloc,
+          builder: (context, state) {
+            if (state is LeagueListLoaded) {
+              print(1);
+              return ListTitleWidget();
+            }
+            return SliverToBoxAdapter(
+              child: Center(
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  color: primaryColor,
+                ),
+              ),
+            );
+          },
+        )
       ],
     ));
   }

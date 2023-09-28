@@ -34,14 +34,9 @@ class _MyBetScreenState extends State<MyBetScreen> {
 
         elevation: 0,
       ),
-      SliverPadding(
-        padding: const EdgeInsets.symmetric(horizontal: 15).copyWith(top: 18),
-        sliver: SliverList.builder(
-            itemCount: 20,
-            itemBuilder: (context, i) => BetWidget(
-                  theme: theme,
-                )),
-      ),
+      BetWidget(
+        id: 1075292,
+      )
     ]));
   }
 }

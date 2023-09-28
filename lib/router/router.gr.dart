@@ -45,12 +45,6 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
-    MatchRouteAdd.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const MatchScreenAdd(),
-      );
-    },
     MyBetRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -158,20 +152,6 @@ class MatchRouteArgs {
   String toString() {
     return 'MatchRouteArgs{key: $key, id: $id}';
   }
-}
-
-/// generated route for
-/// [MatchScreenAdd]
-class MatchRouteAdd extends PageRouteInfo<void> {
-  const MatchRouteAdd({List<PageRouteInfo>? children})
-      : super(
-          MatchRouteAdd.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'MatchRouteAdd';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

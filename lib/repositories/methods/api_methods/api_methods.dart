@@ -1,3 +1,4 @@
+import 'package:match_bet/models/bets/bet.dart';
 import 'package:match_bet/models/matches/response_models/match_model.dart';
 
 import '../../api/api.dart';
@@ -41,5 +42,17 @@ class ApiMethods {
       print('Err : ${err}');
     }
     return MatchModel();
+  }
+
+  Future<List<Bet>> getBets(id) async {
+    try {
+      final betModel = await ApiBet().getBet(id);
+      final bookmakers = betModel.bookmakers![0]; //[id,name,bets]
+      final List<Bet> bets = bookmakers.bets!; //bets[{},{},{}..]
+      return bets;
+    } catch (err) {
+      print('Api Methods Error: ${err}');
+    }
+    return [];
   }
 }
