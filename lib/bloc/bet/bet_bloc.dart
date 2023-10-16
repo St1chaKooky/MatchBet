@@ -10,7 +10,12 @@ class BetBloc extends Bloc<BetEvent, BetState> {
   BetBloc(this.apiMethods, this.id) : super(BetInitial()) {
     on<LoadBet>((event, emit) async {
       final betList = await apiMethods.getBets(id);
-      emit(BetLoaded(betList: betList));
+      print(betList);
+      if (betList!.isEmpty) {
+        emit(BetEmpty());
+      } else {
+        emit(BetLoaded(betList: betList));
+      }
     });
   }
   final ApiMethods apiMethods;

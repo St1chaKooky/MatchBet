@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:match_bet/widgets/button.dart';
 
+import '../../router/router.dart';
 import '../../utils/colors.dart';
 import '../../widgets/button_google.dart';
 import '../../widgets/input.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -15,7 +18,11 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
+    TextEditingController _emailController = TextEditingController();
+    TextEditingController _passwordController = TextEditingController();
+
     return Scaffold(
+        backgroundColor: Colors.white,
       body: SafeArea(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -34,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 hintText: 'Enter your email',
                 textInputType: TextInputType.emailAddress,
                 color: inputColor,
-                // textEditingController: _emailController,
+                textEditingController: _emailController,
               ),
               const SizedBox(
                 height: 12,
@@ -42,7 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
               TextFieldInput(
                 hintText: 'Enter your password',
                 textInputType: TextInputType.text,
-                // textEditingController: _passwordController,
+                textEditingController: _passwordController,
                 isPassword: true,
                 color: inputColor,
               ),
@@ -68,7 +75,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      AutoRouter.of(context).push(SignUpRoute());
+
+                    },
                     child: Container(
                       padding: const EdgeInsets.symmetric(vertical: 20),
                       child: Text(

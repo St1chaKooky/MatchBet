@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:match_bet/utils/colors.dart';
 import 'package:match_bet/widgets/button.dart';
 
+import '../../router/router.dart';
 import '../../widgets/button_google.dart';
 import '../../widgets/input.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
@@ -15,7 +18,13 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
+    TextEditingController _emailController = TextEditingController();
+    TextEditingController _passwordController = TextEditingController();
+    TextEditingController _nameController = TextEditingController();
+
     return Scaffold(
+      backgroundColor: Colors.white,
+      
       body: SafeArea(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -33,7 +42,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               TextFieldInput(
                 hintText: 'Enter your username',
                 textInputType: TextInputType.text,
-                // textEditingController: _passwordController,
+                textEditingController: _nameController,
                 isPassword: true,
                 color: inputColor,
               ),
@@ -43,7 +52,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               TextFieldInput(
                 hintText: 'Enter your email',
                 textInputType: TextInputType.emailAddress,
-                // textEditingController: _emailController,
+                textEditingController: _emailController,
                 color: inputColor,
               ),
               const SizedBox(
@@ -52,7 +61,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               TextFieldInput(
                 hintText: 'Enter your password',
                 textInputType: TextInputType.text,
-                // textEditingController: _passwordController,
+                textEditingController: _passwordController,
                 isPassword: true,
                 color: inputColor,
               ),
@@ -78,7 +87,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      AutoRouter.of(context).push(LoginRoute());
+
+                    },
                     child: Container(
                       padding: const EdgeInsets.symmetric(vertical: 20),
                       child: Text(

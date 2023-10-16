@@ -11,4 +11,6 @@ class BetLoaded extends BetState {
   BetLoaded({required this.betList});
 }
 
+class BetEmpty extends BetState {}
+
 class BetLoading extends BetState {}

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "414576587934",
+    "project_id": "matchbet-46416",
+    "storage_bucket": "matchbet-46416.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:414576587934:android:0f3c839af01095c061778f",
+        "android_client_info": {
+          "package_name": "com.frezycode.match_bet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXJW-3Un81Us8wBNtvjP1qZk0oicebcO4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

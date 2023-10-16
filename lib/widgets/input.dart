@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../utils/colors.dart';
 
 class TextFieldInput extends StatelessWidget {
-  // final TextEditingController textEditingController;
+  final TextEditingController textEditingController;
   final bool isPassword;
   final String hintText;
   final TextInputType textInputType;
@@ -11,7 +11,7 @@ class TextFieldInput extends StatelessWidget {
 
   const TextFieldInput({
     super.key,
-    // required this.textEditingController,
+    required this.textEditingController,
     this.isPassword = false,
     required this.hintText,
     required this.textInputType,
@@ -21,7 +21,7 @@ class TextFieldInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      // controller: textEditingController,
+      controller: textEditingController,
       decoration: InputDecoration(
         fillColor: color,
         hintText: hintText,

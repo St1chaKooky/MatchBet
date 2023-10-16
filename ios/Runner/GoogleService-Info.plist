@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyC_fn5I38-8FcM-pPxoEJrD4s7JOHTD6Fg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>414576587934</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.frezycode.matchBet</string>
+	<key>PROJECT_ID</key>
+	<string>matchbet-46416</string>
+	<key>STORAGE_BUCKET</key>
+	<string>matchbet-46416.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:414576587934:ios:a6193d46c4f5dd5e61778f</string>
+</dict>
+</plist>

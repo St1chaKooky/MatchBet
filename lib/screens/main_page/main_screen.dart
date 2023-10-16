@@ -23,7 +23,7 @@ class _MainScreenState extends State<MainScreen> {
   final _allleagueListBloc = LeagueListBloc(ApiMethods());
   final _liveleagueListBloc = LiveBloc(ApiMethods());
 
-// Переменная для хранения результата асинхронной операции
+
 
   int index = 0;
 
@@ -72,7 +72,7 @@ class _MainScreenState extends State<MainScreen> {
             child: TextFieldInput(
               hintText: 'Введите название матча',
               textInputType: TextInputType.name,
-              color: whiteColor,
+              color: whiteColor, textEditingController: TextEditingController(),
             ),
           ),
         ),
@@ -81,7 +81,7 @@ class _MainScreenState extends State<MainScreen> {
             height: 18,
           ),
         ),
-        SliverToBoxAdapter(
+          SliverToBoxAdapter(
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(

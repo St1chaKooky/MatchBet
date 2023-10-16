@@ -8,6 +8,8 @@ import '../screens/add_prognoz_page/my_publication_prognoz.dart';
 import '../screens/main_page/main_screen.dart';
 import '../screens/main_page/match_screen.dart';
 import '../screens/main_page/prognoz_match_screen.dart';
+import '../screens/start_page/login_screen.dart';
+import '../screens/start_page/sign_screen.dart';
 import 'nav_bar/navigation_bar.dart';
 
 part 'router.gr.dart';
@@ -46,5 +48,13 @@ class AppRouter extends _$AppRouter {
           page: PrognozRoute.page,
           path: '/prognoz',
         ),
+    AutoRoute(
+      page: LoginRoute.page,
+      path: '/login',
+    ),
+    AutoRoute(
+      page: SignUpRoute.page,
+      path: '/signUp',
+    ),
       ];
 }

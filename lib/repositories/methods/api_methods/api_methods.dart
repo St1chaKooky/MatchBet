@@ -46,7 +46,13 @@ class ApiMethods {
 
   Future<List<Bet>?> getBets(id) async {
     try {
-      final betModel = await ApiBet().getBet(id);
+      final betModels = await ApiBet().getBet(id);
+
+      if (betModels != null && betModels.isNotEmpty) {
+      } else {
+        return [];
+      }
+      final betModel = betModels[0];
       int index = 0;
       final bookmakers = betModel.bookmakers;
       if (bookmakers != null) {
@@ -61,6 +67,7 @@ class ApiMethods {
       }
     } catch (err) {
       print('Api Methods Error: ${err}');
+      return [];
     }
     return [];
   }

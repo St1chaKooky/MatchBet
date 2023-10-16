@@ -40,7 +40,7 @@ class ApiMeneger {
         }
       }
     } catch (error) {
-      print('Ошибка при загрузке данных vcvc: $error');
+      print('Ошибка при загрузке данных матчей: $error');
     }
 
     return [];
@@ -70,7 +70,7 @@ class ApiMatch {
         }
       }
     } catch (err) {
-      print('Error: ${err}');
+      print('Ошибка при загрузке информации матча ${err}');
     }
     return MatchModel(); // Возвращаем null в случае ошибки или отсутствия матча
   }
@@ -78,7 +78,7 @@ class ApiMatch {
 
 class ApiBet {
   final Dio dio = Dio();
-  Future<ResponseModel> getBet(id) async {
+  Future<List<ResponseModel>?> getBet(id) async {
     String apiUrl =
         'https://v3.football.api-sports.io/odds?fixture=$id'; // id преобразован в строку
     dio.options.headers = {
@@ -92,15 +92,15 @@ class ApiBet {
         if (responseData is Map<String, dynamic>) {
           final myResponse = Responsee.fromJson(responseData);
           final betModels = myResponse.response;
-          if (betModels != null && betModels.isNotEmpty) {
-            print(betModels[0]);
-            return betModels[0];
-          }
+          if (betModels == []) {
+            return [];
+          } // вывод
+          return betModels;
         }
       }
     } catch (err) {
-      print('Error: ${err}');
+      print('Ошибка получения информации ставки ${err}');
     }
-    return ResponseModel();
+    return [];
   }
 }

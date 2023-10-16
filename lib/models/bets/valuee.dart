@@ -1,11 +1,15 @@
 class Valuee {
-  String? value;
+  dynamic value; // Теперь тип данных - dynamic
   String? odd;
 
   Valuee({this.value, this.odd});
 
   Valuee.fromJson(Map<String, dynamic> json) {
-    value = json['value'];
+    if (json['value'] is int) {
+      value = json['value'].toString(); // Преобразуем int в строку
+    } else {
+      value = json['value']; // Оставляем строку как есть
+    }
     odd = json['odd'];
   }
 

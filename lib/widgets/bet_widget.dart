@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:match_bet/bloc/bet/bet_bloc.dart';
 import 'package:match_bet/models/bets/valuee.dart';
 import 'package:match_bet/repositories/methods/api_methods/api_methods.dart';
+import 'package:match_bet/router/router.dart';
 
 import '../utils/colors.dart';
 
@@ -90,17 +92,48 @@ class _BetWidgetState extends State<BetWidget> {
                   );
                 }),
           );
-        }
-        return SliverFillRemaining(
-          child: Center(
-            child: CircularProgressIndicator(
-              strokeWidth: 2,
-              color: primaryColor,
+        } else if (state is BetEmpty) {
+          final theme = Theme.of(context).textTheme;
+
+          return SliverPadding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 15).copyWith(top: 18),
+            sliver: SliverToBoxAdapter(
+              child: _NotBet(theme: theme),
             ),
-          ),
-        );
+          );
+        } else
+          // ignore: curly_braces_in_flow_control_structures
+          return SliverFillRemaining(
+            child: Center(
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+                color: primaryColor,
+              ),
+            ),
+          );
       },
     );
+  }
+}
+
+class _NotBet extends StatelessWidget {
+  const _NotBet({
+    super.key,
+    required this.theme,
+  });
+
+  final TextTheme theme;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12), color: whiteColor),
+        width: 300,
+        height: 100,
+        child: Center(
+            child: Text('На данный матч нет ставок', style: theme.titleSmall)));
   }
 }
 
@@ -125,7 +158,7 @@ class _MyBetState extends State<_MyBet> {
     final theme = Theme.of(context).textTheme;
     return InkWell(
       onTap: () {
-        print('laala');
+        AutoRouter.of(context).push(MyPublicationRoute());
       },
       child: Column(
         children: [
