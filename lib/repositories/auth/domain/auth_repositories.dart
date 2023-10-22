@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:match_bet/repositories/auth/models/user_model.dart';
 
-abstract class AuthRepositories {
+class AuthRepositories {
   final firebase_auth.FirebaseAuth _firebaseAuth;
   AuthRepositories({firebase_auth.FirebaseAuth? firebaseAuth})
       : _firebaseAuth = firebaseAuth ?? firebase_auth.FirebaseAuth.instance;

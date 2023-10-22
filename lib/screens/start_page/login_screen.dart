@@ -10,6 +10,7 @@ import 'package:auto_route/auto_route.dart';
 @RoutePage()
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+  static Page page() => const MaterialPage<void>(child: LoginScreen());
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -22,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
     TextEditingController _passwordController = TextEditingController();
 
     return Scaffold(
-        backgroundColor: Colors.white,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -77,7 +78,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   GestureDetector(
                     onTap: () {
                       AutoRouter.of(context).push(SignUpRoute());
-
                     },
                     child: Container(
                       padding: const EdgeInsets.symmetric(vertical: 20),

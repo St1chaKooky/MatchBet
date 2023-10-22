@@ -48,13 +48,13 @@ class AppRouter extends _$AppRouter {
           page: PrognozRoute.page,
           path: '/prognoz',
         ),
-    AutoRoute(
-      page: LoginRoute.page,
-      path: '/login',
-    ),
-    AutoRoute(
-      page: SignUpRoute.page,
-      path: '/signUp',
-    ),
+        AutoRoute(
+          page: LoginRoute.page,
+          path: '/login',
+        ),
+        AutoRoute(
+          page: SignUpRoute.page,
+          path: '/signUp',
+        ),
       ];
 }

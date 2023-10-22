@@ -13,16 +13,25 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   StreamSubscription<User>? _userSubscription;
   AuthBloc({required AuthRepositories authRepo})
       : _authRepo = authRepo,
-        super(const AuthState.unauthenticated()) {
+        super(authRepo.currentUser.isNotEmpty
+            ? AuthState.authenticated(authRepo.currentUser)
+            : const AuthState.unauthenticated()) {
     on<UserLogout>(_onUserLogout);
     on<UserChanged>(_onUserChanged);
   }
   void _onUserLogout(
     UserLogout event,
     Emitter<AuthState> emit,
-  ) {}
+  ) {
+    unawaited(_authRepo.logOut());
+  }
+
   void _onUserChanged(
     UserChanged event,
     Emitter<AuthState> emit,
-  ) {}
+  ) {
+    event.user.isNotEmpty
+        ? AuthState.authenticated(event.user)
+        : const AuthState.unauthenticated();
+  }
 }
