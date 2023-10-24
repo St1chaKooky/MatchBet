@@ -70,9 +70,11 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     NavigationBarRoute.name: (routeData) {
+      final args = routeData.argsAs<NavigationBarRouteArgs>(
+          orElse: () => const NavigationBarRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const NavigationBarScreen(),
+        child: NavigationBarScreen(key: args.key),
       );
     },
     PrognozRoute.name: (routeData) {
@@ -85,6 +87,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const SignUpScreen(),
+      );
+    },
+    SplashRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SplashScreen(),
       );
     },
   };
@@ -252,16 +260,31 @@ class MyPublicationRouteArgs {
 
 /// generated route for
 /// [NavigationBarScreen]
-class NavigationBarRoute extends PageRouteInfo<void> {
-  const NavigationBarRoute({List<PageRouteInfo>? children})
-      : super(
+class NavigationBarRoute extends PageRouteInfo<NavigationBarRouteArgs> {
+  NavigationBarRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
           NavigationBarRoute.name,
+          args: NavigationBarRouteArgs(key: key),
           initialChildren: children,
         );
 
   static const String name = 'NavigationBarRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<NavigationBarRouteArgs> page =
+      PageInfo<NavigationBarRouteArgs>(name);
+}
+
+class NavigationBarRouteArgs {
+  const NavigationBarRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'NavigationBarRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for
@@ -288,6 +311,20 @@ class SignUpRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SignUpRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SplashScreen]
+class SplashRoute extends PageRouteInfo<void> {
+  const SplashRoute({List<PageRouteInfo>? children})
+      : super(
+          SplashRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SplashRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

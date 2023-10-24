@@ -10,7 +10,7 @@ import 'package:auto_route/auto_route.dart';
 @RoutePage()
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
-  static Page page() => const MaterialPage<void>(child: LoginScreen());
+
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();

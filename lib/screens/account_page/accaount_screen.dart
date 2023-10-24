@@ -13,7 +13,11 @@ class _AccountScreenState extends State<AccountScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Text('Account')),
+      body: Center(
+          child: ElevatedButton(
+        child: Text('Logout'),
+        onPressed: () {},
+      )),
     );
   }
 }

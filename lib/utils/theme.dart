@@ -12,6 +12,8 @@ ThemeData buildThemeData(BuildContext context) {
     colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
     useMaterial3: true,
     textTheme: TextTheme(
+      titleLarge: TextStyle(
+          fontSize: 38, color: whiteColor, fontWeight: FontWeight.w600),
       titleSmall: TextStyle(
           fontSize: 20, color: blackColor, fontWeight: FontWeight.w400),
       headlineSmall: TextStyle(
