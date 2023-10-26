@@ -1,7 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:match_bet/bloc/league/league_list_bloc.dart';
+import 'package:match_bet/bloc/bloc_matches/league_matches_bloc/league_list_bloc.dart';
+
 import 'package:match_bet/repositories/methods/api_methods/api_methods.dart';
 import 'package:match_bet/widgets/list_title_league.dart';
 

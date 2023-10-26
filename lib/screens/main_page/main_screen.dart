@@ -1,7 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:match_bet/bloc/league/league_list_bloc.dart';
-import 'package:match_bet/bloc/live/live_bloc.dart';
+import 'package:match_bet/bloc/bloc_matches/league_matches_bloc/league_list_bloc.dart';
+import 'package:match_bet/bloc/bloc_matches/live_matches_bloc/live_bloc.dart';
+
 import 'package:match_bet/repositories/methods/api_methods/api_methods.dart';
 import 'package:match_bet/widgets/list_title_live.dart';
 import '../../utils/colors.dart';
@@ -22,8 +23,6 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   final _allleagueListBloc = LeagueListBloc(ApiMethods());
   final _liveleagueListBloc = LiveBloc(ApiMethods());
-
-
 
   int index = 0;
 
@@ -72,7 +71,8 @@ class _MainScreenState extends State<MainScreen> {
             child: TextFieldInput(
               hintText: 'Введите название матча',
               textInputType: TextInputType.name,
-              color: whiteColor, textEditingController: TextEditingController(),
+              color: whiteColor,
+              textEditingController: TextEditingController(),
             ),
           ),
         ),
@@ -81,7 +81,7 @@ class _MainScreenState extends State<MainScreen> {
             height: 18,
           ),
         ),
-          SliverToBoxAdapter(
+        SliverToBoxAdapter(
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(

@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:match_bet/bloc/bet/bet_bloc.dart';
+
+import 'package:match_bet/bloc/bloc_matches/bet_bloc/bet_bloc.dart';
+
 import 'package:match_bet/models/bets/valuee.dart';
 import 'package:match_bet/repositories/methods/api_methods/api_methods.dart';
 import 'package:match_bet/router/router.dart';

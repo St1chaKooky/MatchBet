@@ -1,7 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:match_bet/bloc/match/match_bloc.dart';
+import 'package:match_bet/bloc/bloc_matches/match_bloc/match_bloc.dart';
+
 import 'package:match_bet/repositories/methods/algortm/date.dart';
 import 'package:match_bet/repositories/methods/algortm/nameSimvols.dart';
 import 'package:match_bet/repositories/methods/api_methods/api_methods.dart';
