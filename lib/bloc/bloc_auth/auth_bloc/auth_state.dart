@@ -16,7 +16,7 @@ class AuthState extends Equatable {
       : this._(status: AuthStatus.authenticated, user: user);
 
   //Curent user is unauth
-  const AuthState.unauthenticated(User user)
+  const AuthState.unauthenticated()
       : this._(status: AuthStatus.unauthenticated);
 
   @override
