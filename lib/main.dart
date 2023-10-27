@@ -1,16 +1,21 @@
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:match_bet/firebase_options.dart';
 import 'package:match_bet/router/router.dart';
 
 import 'package:match_bet/utils/theme.dart';
 
+import 'simpe_bloc_observer.dart';
+
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  Bloc.observer = SimpleBlocObserver();
   runApp(MyApp());
 }
 
