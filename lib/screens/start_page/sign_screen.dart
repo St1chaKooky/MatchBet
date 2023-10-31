@@ -24,7 +24,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      
       body: SafeArea(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -47,7 +46,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 color: inputColor,
               ),
               const SizedBox(
-                height: 64,
+                height: 12,
               ),
               TextFieldInput(
                 hintText: 'Enter your email',
@@ -83,18 +82,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Container(
                     padding: const EdgeInsets.symmetric(vertical: 20),
                     child: const Text(
-                      'Don`t have accaount? ',
+                      'Have an account? ',
                     ),
                   ),
                   GestureDetector(
                     onTap: () {
                       AutoRouter.of(context).push(LoginRoute());
-
                     },
                     child: Container(
                       padding: const EdgeInsets.symmetric(vertical: 20),
                       child: Text(
-                        'Sign Up',
+                        'Sign In',
                         style: TextStyle(
                             color: primaryColor, fontWeight: FontWeight.w500),
                       ),

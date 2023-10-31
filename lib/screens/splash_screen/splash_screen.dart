@@ -1,6 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:match_bet/bloc/bloc_auth/auth_bloc/auth_bloc.dart';
+import 'package:match_bet/router/router.dart';
 
 import 'package:match_bet/utils/colors.dart';
 
@@ -15,22 +18,24 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context).textTheme;
-
-    return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-              colors: [primaryColor, Color(hexColor('1314DE'))],
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft),
-        ),
-        child: Center(
-            child: Text(
-          'MatchBet',
-          style: theme.titleLarge,
-        )),
-      ),
-    );
+    return Scaffold(body: BlocBuilder<AuthBloc, AuthState>(
+      builder: (context, state) {
+        if (state.status == AuthStatus.authenticated) {
+          AutoRouter.of(context).push(NavigationBarRoute());
+        } else {
+          AutoRouter.of(context).push(const LoginRoute());
+        }
+        return Center(
+          child: Container(
+            width: 100,
+            height: 100,
+            child: CircularProgressIndicator(
+              strokeWidth: 3,
+              color: primaryColor,
+            ),
+          ),
+        );
+      },
+    ));
   }
 }

@@ -24,19 +24,20 @@ class AppRouter extends _$AppRouter {
           page: SplashRoute.page,
           path: '/',
         ),
-        AutoRoute(page: NavigationBarRoute.page, path: '/nav'),
-        AutoRoute(
-          page: MainRoute.page,
-          path: '/main',
-        ),
-        AutoRoute(
-          page: ListMatchRoute.page,
-          path: '/listPrognoz',
-        ),
-        AutoRoute(
-          page: AccountRoute.page,
-          path: '/account',
-        ),
+        AutoRoute(children: [
+          AutoRoute(
+            page: AccountRoute.page,
+            path: 'account',
+          ),
+          AutoRoute(
+            page: MainRoute.page,
+            path: 'main',
+          ),
+          AutoRoute(
+            page: ListMatchRoute.page,
+            path: 'listPrognoz',
+          ),
+        ], page: NavigationBarRoute.page, path: '/nav'),
         AutoRoute(
           page: MatchRoute.page,
           path: '/match/:id',

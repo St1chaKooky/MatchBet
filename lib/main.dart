@@ -3,8 +3,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:match_bet/bloc/bloc_auth/auth_bloc/auth_bloc.dart';
 
 import 'package:match_bet/firebase_options.dart';
+import 'package:match_bet/repositories/auth/firebase_user_repositories.dart';
 import 'package:match_bet/router/router.dart';
 
 import 'package:match_bet/utils/theme.dart';
@@ -16,7 +18,17 @@ Future main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   Bloc.observer = SimpleBlocObserver();
-  runApp(MyApp());
+  runApp(
+    MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider<AuthBloc>(
+          create: (_) => AuthBloc(myUserRepo: FirebseUserRepository()),
+        ),
+        // Другие провайдеры
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
