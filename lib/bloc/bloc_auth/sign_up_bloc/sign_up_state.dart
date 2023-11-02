@@ -14,3 +14,10 @@ class SignUpSuccess extends SignUpState {}
 class SignUpFailure extends SignUpState {}
 
 class SignUpProcess extends SignUpState {}
+
+// ignore: must_be_immutable
+class SignUpError extends SignUpState {
+  String error;
+
+  SignUpError({required this.error});
+}

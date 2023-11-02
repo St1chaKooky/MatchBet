@@ -22,13 +22,14 @@ class _SplashScreenState extends State<SplashScreen> {
       builder: (context, state) {
         if (state.status == AuthStatus.authenticated) {
           AutoRouter.of(context).push(NavigationBarRoute());
-        } else {
+        } else if (((state.status == AuthStatus.unauthenticated) ||
+            (state.status == AuthStatus.unknown))) {
           AutoRouter.of(context).push(const LoginRoute());
         }
         return Center(
           child: Container(
-            width: 100,
-            height: 100,
+            width: 50,
+            height: 50,
             child: CircularProgressIndicator(
               strokeWidth: 3,
               color: primaryColor,

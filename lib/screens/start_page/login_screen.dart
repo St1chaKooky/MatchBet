@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:match_bet/bloc/bloc_auth/sign_in_bloc/sign_in_bloc.dart';
 import 'package:match_bet/repositories/methods/algortm/stringField.dart';
 import 'package:match_bet/widgets/button.dart';
@@ -89,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     validator: (val) {
                       if (val!.isEmpty) {
                         return 'Please fill in input';
-                      } else if (!passwordRexExp.hasMatch(val)) {
+                      } else if (!passwordRegExp.hasMatch(val)) {
                         return 'Please enter a valid email';
                       }
                       return null;
@@ -108,7 +109,30 @@ class _LoginScreenState extends State<LoginScreen> {
                             }
                           },
                           buttonText: 'Log in')
-                      : const CircularProgressIndicator(),
+                      : Container(
+                          child: Container(
+                              width: double.infinity,
+                              alignment: Alignment.center,
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 17, horizontal: 30),
+                              decoration: ShapeDecoration(
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(6),
+                                    ),
+                                  ),
+                                  color: primaryColor),
+                              child: Center(
+                                  child: SizedBox(
+                                height: 16,
+                                width: 16,
+                                child: Center(
+                                    child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                  color: whiteColor,
+                                )),
+                              ))),
+                        ),
                   const SizedBox(
                     height: 10,
                   ),

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:match_bet/bloc/bloc_auth/auth_bloc/auth_bloc.dart';
+import 'package:match_bet/bloc/bloc_auth/sign_in_bloc/sign_in_bloc.dart';
+import 'package:match_bet/bloc/bloc_auth/sign_up_bloc/sign_up_bloc.dart';
 
 import 'package:match_bet/firebase_options.dart';
 import 'package:match_bet/repositories/auth/firebase_user_repositories.dart';
@@ -24,7 +26,14 @@ Future main() async {
         RepositoryProvider<AuthBloc>(
           create: (_) => AuthBloc(myUserRepo: FirebseUserRepository()),
         ),
-        // Другие провайдеры
+        BlocProvider(
+          create: (context) =>
+              SignInBloc(userRepository: context.read<AuthBloc>().userRepo),
+        ),
+        BlocProvider(
+          create: (context) =>
+              SignUpBloc(userRepository: context.read<AuthBloc>().userRepo),
+        ),
       ],
       child: MyApp(),
     ),

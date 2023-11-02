@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:match_bet/bloc/bloc_auth/sign_up_bloc/sign_up_bloc.dart';
 import 'package:match_bet/repositories/auth/models/my_user_model.dart';
 import 'package:match_bet/repositories/methods/algortm/stringField.dart';
@@ -32,6 +33,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool containsNumber = false;
   bool containsSpecialChar = false;
   bool contains8Length = false;
+  bool stateError = false;
+  String err = ' ';
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +43,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
       body: SafeArea(
         child: BlocListener<SignUpBloc, SignUpState>(
           listener: (context, state) {
+            if (state is SignUpError) {
+              setState(() {
+                err = state.error;
+                stateError = true;
+              });
+            } else {
+              setState(() {
+                stateError = false;
+              });
+            }
             if (state is SignUpSuccess) {
               setState(() {
                 signUpRequired = false;
@@ -111,9 +124,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     errMsg: _errMsg,
                     validator: (val) {
                       if (val!.isEmpty) {
-                        return 'Please fill in input';
-                      } else if (!passwordRexExp.hasMatch(val)) {
-                        return 'Please enter a valid email';
+                        return 'Please fill in this field';
+                      } else if (!passwordRegExp.hasMatch(val)) {
+                        return 'Please enter a valid password';
                       }
                       return null;
                     },
@@ -147,11 +160,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       }
                       if (val.contains(specialCharRexExp)) {
                         setState(() {
-                          containsSpecialChar = true;
+                          containsSpecialChar = false;
                         });
                       } else {
                         setState(() {
-                          containsSpecialChar = false;
+                          containsSpecialChar = true;
                         });
                       }
                       if (val.length >= 8) {
@@ -169,7 +182,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   const SizedBox(
                     height: 12,
                   ),
-                  !signUpRequired
+                  !signUpRequired || !stateError
                       ? ButtonWidget(
                           onTap: () {
                             if (_formKey.currentState!.validate()) {
@@ -185,14 +198,74 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             }
                           },
                           buttonText: 'Sign Up')
-                      : const CircularProgressIndicator(),
+                      : Container(
+                          child: Container(
+                              width: double.infinity,
+                              alignment: Alignment.center,
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 17, horizontal: 30),
+                              decoration: ShapeDecoration(
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(6),
+                                    ),
+                                  ),
+                                  color: primaryColor),
+                              child: Center(
+                                  child: SizedBox(
+                                height: 16,
+                                width: 16,
+                                child: Center(
+                                    child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                  color: whiteColor,
+                                )),
+                              ))),
+                        ),
                   const SizedBox(
                     height: 10,
                   ),
                   const ButtonGoogleWidget(),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  stateError
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.symmetric(vertical: 20),
+                              child: Text(
+                                err.replaceAll(regExp, ""),
+                                maxLines: 4,
+                                overflow: TextOverflow.ellipsis,
+                                softWrap: true,
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                AutoRouter.of(context).push(LoginRoute());
+                              },
+                              child: Container(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 20),
+                                child: Text(
+                                  ' Go LogIn',
+                                  style: TextStyle(
+                                      color: primaryColor,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      : Container(),
                   Flexible(
                     flex: 2,
                     child: Container(),
+                  ),
+                  const SizedBox(
+                    height: 10,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

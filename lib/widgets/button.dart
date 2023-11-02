@@ -19,7 +19,7 @@ class _ButtonWidgetState extends State<ButtonWidget> {
       child: Container(
           width: double.infinity,
           alignment: Alignment.center,
-          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 30),
+          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 30),
           decoration: ShapeDecoration(
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(

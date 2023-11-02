@@ -7,14 +7,18 @@ import 'package:match_bet/repositories/auth/models/my_user_model.dart';
 import 'user_repo.dart';
 
 class FirebseUserRepository implements UserRepository {
-  FirebseUserRepository({FirebaseAuth? firebaseAuth})
-      : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;
+  FirebseUserRepository({
+    FirebaseAuth? firebaseAuth,
+  }) : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;
 
   final FirebaseAuth _firebaseAuth;
   final usersCollection = FirebaseFirestore.instance.collection('users');
 
+  /// Stream of [MyUser] which will emit the current user when
+  /// the authentication state changes.
+  ///
+  /// Emits [MyUser.empty] if the user is not authenticated.
   @override
-  // TODO: implement user
   Stream<User?> get user {
     return _firebaseAuth.authStateChanges().map((firebaseUser) {
       final user = firebaseUser;
@@ -27,11 +31,13 @@ class FirebseUserRepository implements UserRepository {
     try {
       UserCredential user = await _firebaseAuth.createUserWithEmailAndPassword(
           email: myUser.email, password: password);
+
       myUser = myUser.copyWith(id: user.user!.uid);
+      print(user.user!.uid);
       return myUser;
     } catch (e) {
       log(e.toString());
-      rethrow;
+      return MyUser(id: ' ', email: ' ', name: e.toString());
     }
   }
 
