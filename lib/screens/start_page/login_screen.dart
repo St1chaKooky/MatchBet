@@ -21,8 +21,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   String? _errMsg;
   bool signInRequired = false;
   @override
@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     hintText: 'Enter your email',
                     textInputType: TextInputType.emailAddress,
                     color: inputColor,
-                    textEditingController: _emailController,
+                    textEditingController: emailController,
                     errMsg: _errMsg,
                     validator: (val) {
                       if (val!.isEmpty) {
@@ -83,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   TextFieldInput(
                     hintText: 'Enter your password',
                     textInputType: TextInputType.text,
-                    textEditingController: _passwordController,
+                    textEditingController: passwordController,
                     isPassword: true,
                     color: inputColor,
                     errMsg: _errMsg,
@@ -104,8 +104,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           onTap: () {
                             if (_formKey.currentState!.validate()) {
                               context.read<SignInBloc>().add(SignInRequired(
-                                  email: _emailController.text,
-                                  password: _passwordController.text));
+                                  email: emailController.text,
+                                  password: passwordController.text));
                             }
                           },
                           buttonText: 'Log in')

@@ -12,4 +12,5 @@ class LeagueListLoaded extends LeagueListState {
 
   LeagueListLoaded({required this.leagueList});
 }
+
 class LeagueListLoadingError extends LeagueListState {}

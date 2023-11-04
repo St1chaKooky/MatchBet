@@ -22,9 +22,9 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final _formKey = GlobalKey<FormState>();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _usernameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
   String? _errMsg;
   bool signUpRequired = false;
 
@@ -84,7 +84,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       hintText: 'Enter your username',
                       textInputType: TextInputType.emailAddress,
                       color: inputColor,
-                      textEditingController: _usernameController,
+                      textEditingController: usernameController,
                       errMsg: _errMsg,
                       validator: (val) {
                         if (val!.isEmpty) {
@@ -101,7 +101,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     hintText: 'Enter your email',
                     textInputType: TextInputType.emailAddress,
                     color: inputColor,
-                    textEditingController: _emailController,
+                    textEditingController: emailController,
                     errMsg: _errMsg,
                     validator: (val) {
                       if (val!.isEmpty) {
@@ -118,7 +118,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   TextFieldInput(
                     hintText: 'Enter your password',
                     textInputType: TextInputType.text,
-                    textEditingController: _passwordController,
+                    textEditingController: passwordController,
                     isPassword: true,
                     color: inputColor,
                     errMsg: _errMsg,
@@ -182,46 +182,44 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   const SizedBox(
                     height: 12,
                   ),
-                  !signUpRequired || !stateError
+                  !signUpRequired && !stateError
                       ? ButtonWidget(
                           onTap: () {
                             if (_formKey.currentState!.validate()) {
                               MyUser myUser = MyUser.empty;
                               myUser = myUser.copyWith(
-                                email: _emailController.text,
-                                name: _usernameController.text,
+                                email: emailController.text,
+                                name: usernameController.text,
                               );
                               setState(() {
                                 context.read<SignUpBloc>().add(SignUpRequired(
-                                    myUser, _passwordController.text));
+                                    myUser, passwordController.text));
                               });
                             }
                           },
                           buttonText: 'Sign Up')
                       : Container(
-                          child: Container(
-                              width: double.infinity,
-                              alignment: Alignment.center,
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 17, horizontal: 30),
-                              decoration: ShapeDecoration(
-                                  shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(6),
-                                    ),
-                                  ),
-                                  color: primaryColor),
-                              child: Center(
-                                  child: SizedBox(
-                                height: 16,
-                                width: 16,
-                                child: Center(
-                                    child: CircularProgressIndicator(
-                                  strokeWidth: 2,
-                                  color: whiteColor,
-                                )),
-                              ))),
-                        ),
+                          width: double.infinity,
+                          alignment: Alignment.center,
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 17, horizontal: 30),
+                          decoration: ShapeDecoration(
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(6),
+                                ),
+                              ),
+                              color: primaryColor),
+                          child: Center(
+                              child: SizedBox(
+                            height: 16,
+                            width: 16,
+                            child: Center(
+                                child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              color: whiteColor,
+                            )),
+                          ))),
                   const SizedBox(
                     height: 10,
                   ),
@@ -230,34 +228,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     height: 10,
                   ),
                   stateError
-                      ? Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.symmetric(vertical: 20),
-                              child: Text(
-                                err.replaceAll(regExp, ""),
-                                maxLines: 4,
-                                overflow: TextOverflow.ellipsis,
-                                softWrap: true,
-                              ),
+                      ? Flexible(
+                          child: Center(
+                            child: Text(
+                              err.replaceAll(regExp, ""),
+                              textAlign: TextAlign.center,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
                             ),
-                            GestureDetector(
-                              onTap: () {
-                                AutoRouter.of(context).push(LoginRoute());
-                              },
-                              child: Container(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 20),
-                                child: Text(
-                                  ' Go LogIn',
-                                  style: TextStyle(
-                                      color: primaryColor,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                              ),
-                            ),
-                          ],
+                          ),
                         )
                       : Container(),
                   Flexible(

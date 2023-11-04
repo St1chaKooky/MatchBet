@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:match_bet/models/bets/response.dart';
 import 'package:match_bet/models/bets/response_model.dart';
+import 'package:match_bet/models/matches/match_model.dart';
+import 'package:match_bet/models/matches/response_model.dart';
 
-import 'package:match_bet/models/matches/response_models/match_model.dart';
-import 'package:match_bet/models/matches/response_models/response_model.dart';
 import 'package:match_bet/repositories/methods/algortm/date.dart';
 
 class ApiMeneger {

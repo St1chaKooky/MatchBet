@@ -1,6 +1,8 @@
 import 'dart:developer';
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:match_bet/repositories/auth/entity/user_entity.dart';
 import 'package:match_bet/repositories/auth/models/my_user_model.dart';
 
@@ -96,6 +98,24 @@ class FirebseUserRepository implements UserRepository {
       //id юзера, потом обращаемся к методу set. Этот метод устанавливает новый документ
 
       await usersCollection.doc(user.id).set(user.toEntity().toDocument());
+    } catch (e) {
+      log(e.toString());
+      rethrow;
+    }
+  }
+
+  @override
+  Future<String> uploadPicture(String file, String userId) async {
+    try {
+      File imageFile = File(file);
+      Reference firebaseStoreRef =
+          FirebaseStorage.instance.ref().child('$userId/PP/${userId}_lead');
+      await firebaseStoreRef.putFile(
+        imageFile,
+      );
+      String url = await firebaseStoreRef.getDownloadURL();
+      await usersCollection.doc(userId).update({'picture': url});
+      return url;
     } catch (e) {
       log(e.toString());
       rethrow;

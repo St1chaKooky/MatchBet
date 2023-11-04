@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:match_bet/bloc/bloc_auth/auth_bloc/auth_bloc.dart';
+import 'package:match_bet/bloc/bloc_auth/my_user_bloc/my_user_bloc.dart';
 import 'package:match_bet/bloc/bloc_auth/sign_in_bloc/sign_in_bloc.dart';
 import 'package:match_bet/bloc/bloc_auth/sign_up_bloc/sign_up_bloc.dart';
+import 'package:match_bet/bloc/update_user_info/update_user_info_bloc.dart';
 
 import 'package:match_bet/firebase_options.dart';
 import 'package:match_bet/repositories/auth/firebase_user_repositories.dart';
@@ -34,8 +36,18 @@ Future main() async {
           create: (context) =>
               SignUpBloc(userRepository: context.read<AuthBloc>().userRepo),
         ),
+        BlocProvider(
+          create: (context) => UpdateUserInfoBloc(
+              userRepository: context.read<AuthBloc>().userRepo),
+        ),
+        BlocProvider(
+          create: (context) => MyUserBloc(
+              myUserRepository: context.read<AuthBloc>().userRepo)
+            ..add(
+                GetMyUser(myUserId: context.read<AuthBloc>().state.user!.uid)),
+        ),
       ],
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
