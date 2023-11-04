@@ -21,10 +21,10 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(body: BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
         if (state.status == AuthStatus.authenticated) {
-          AutoRouter.of(context).push(NavigationBarRoute());
+          AutoRouter.of(context).replace(NavigationBarRoute());
         } else if (((state.status == AuthStatus.unauthenticated) ||
             (state.status == AuthStatus.unknown))) {
-          AutoRouter.of(context).push(const LoginRoute());
+          AutoRouter.of(context).replace(const LoginRoute());
         }
         return Center(
           child: Container(

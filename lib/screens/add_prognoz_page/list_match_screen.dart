@@ -58,14 +58,15 @@ class _ListMatchScreenState extends State<ListMatchScreen> {
               print(1);
               return ListTitleWidget();
             }
-            return SliverToBoxAdapter(
-              child: Center(
-                child: CircularProgressIndicator(
-                  strokeWidth: 2,
-                  color: primaryColor,
-                ),
-              ),
-            );
+            return SliverToBoxAdapter(child: Container());
+            // SliverToBoxAdapter(
+            //   child: Center(
+            //     child: CircularProgressIndicator(
+            //       strokeWidth: 2,
+            //       color: primaryColor,
+            //     ),
+            //   ),
+            // );
           },
         )
       ],
