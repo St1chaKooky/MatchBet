@@ -160,11 +160,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       }
                       if (val.contains(specialCharRexExp)) {
                         setState(() {
-                          containsSpecialChar = false;
+                          containsSpecialChar = true;
                         });
                       } else {
                         setState(() {
-                          containsSpecialChar = true;
+                          containsSpecialChar = false;
                         });
                       }
                       if (val.length >= 8) {
