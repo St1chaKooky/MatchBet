@@ -1,16 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:match_bet/bloc/bloc_matches/league_matches_bloc/league_list_bloc.dart';
-import 'package:match_bet/bloc/bloc_matches/live_matches_bloc/live_bloc.dart';
 
-import 'package:match_bet/repositories/methods/api_methods/api_methods.dart';
 import 'package:match_bet/widgets/list_title_live.dart';
 import '../../utils/colors.dart';
 import '../../widgets/button_litle.dart';
 import '../../widgets/input.dart';
 import '../../widgets/list_prognoz.dart';
 import '../../widgets/list_title_league.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
 class MainScreen extends StatefulWidget {
@@ -21,17 +17,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final _allleagueListBloc = LeagueListBloc(ApiMethods());
-  final _liveleagueListBloc = LiveBloc(ApiMethods());
-
   int index = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    _allleagueListBloc.add(LoadLeagueList());
-    _liveleagueListBloc.add(LoadLive());
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -139,41 +125,8 @@ class _MainScreenState extends State<MainScreen> {
                 },
               )
             : index == 1
-                ? BlocBuilder<LeagueListBloc, LeagueListState>(
-                    bloc: _allleagueListBloc,
-                    builder: (context, state) {
-                      if (state is LeagueListLoaded) {
-                        print(1);
-                        return ListTitleWidget();
-                      }
-                      return SliverToBoxAdapter(
-                        child: Center(
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2,
-                            color: primaryColor,
-                          ),
-                        ),
-                      );
-                    },
-                  )
-                : BlocBuilder<LiveBloc, LiveState>(
-                    bloc: _liveleagueListBloc,
-                    builder: (context, state) {
-                      if (state is LiveLoaded) {
-                        print(2);
-
-                        return ListTitleLiveWidget();
-                      }
-                      return SliverToBoxAdapter(
-                        child: Center(
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2,
-                            color: primaryColor,
-                          ),
-                        ),
-                      );
-                    },
-                  )
+                ? ListTitleWidget()
+                : ListTitleLiveWidget()
       ],
     ));
   }
