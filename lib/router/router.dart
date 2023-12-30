@@ -5,8 +5,8 @@ import 'package:match_bet/screens/splash_screen/splash_screen.dart';
 
 import '../screens/account_page/accaount_screen.dart';
 import '../screens/add_prognoz_page/list_match_screen.dart';
-import '../screens/add_prognoz_page/my_bet_prgnoz.dart';
-import '../screens/add_prognoz_page/my_publication_prognoz.dart';
+import '../screens/add_prognoz_page/bets_screen.dart';
+import '../screens/add_prognoz_page/publication_screen.dart';
 import '../screens/main_page/main_screen.dart';
 import '../screens/main_page/match_screen.dart';
 import '../screens/main_page/prognoz_match_screen.dart';

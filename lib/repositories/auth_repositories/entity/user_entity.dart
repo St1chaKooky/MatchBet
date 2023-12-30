@@ -32,4 +32,13 @@ class MyUserEntity extends Equatable {
 
   @override
   List<Object?> get props => [id, email, name, picture];
+  @override
+  String toString() {
+    return '''UserEntity: {
+      id: $id
+      email: $email
+      name: $name
+      picture: $picture
+    }''';
+  }
 }

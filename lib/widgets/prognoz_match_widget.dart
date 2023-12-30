@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:match_bet/utils/colors.dart';
 
-class PrognozWidget extends StatefulWidget {
-  const PrognozWidget({super.key});
+class PrognozMatchWidget extends StatefulWidget {
+  const PrognozMatchWidget({super.key});
 
   @override
-  State<PrognozWidget> createState() => _PrognozWidgetState();
+  State<PrognozMatchWidget> createState() => _PrognozMatchWidgetState();
 }
 
 var text =
@@ -18,13 +18,14 @@ bool proverka() {
   }
 }
 
-class _PrognozWidgetState extends State<PrognozWidget> {
+class _PrognozMatchWidgetState extends State<PrognozMatchWidget> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
 
     return Expanded(
       child: Container(
+        // height: 400,
         decoration: BoxDecoration(
           color: whiteColor,
           borderRadius: BorderRadius.circular(10),
@@ -127,22 +128,9 @@ class _PrognozWidgetState extends State<PrognozWidget> {
             const SizedBox(
               height: 20,
             ),
-            TextField(
-              maxLines: 10,
-              decoration: InputDecoration(
-                hintText: 'Enter your post...',
-                hintStyle: TextStyle(color: textColor),
-                enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: inputColor)),
-                focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(
-                        8.0), // Закругление границы при фокусе
-                    borderSide: BorderSide(
-                        color:
-                            inputColor) // Убираем границу, оставляя только закругления
-                    ),
-              ),
+            Text(
+              text,
+              style: theme.bodyLarge,
             ),
             const SizedBox(
               height: 12,

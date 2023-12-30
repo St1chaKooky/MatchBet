@@ -18,30 +18,28 @@ class _ListMatchScreenState extends State<ListMatchScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
     return Scaffold(
-        body: CustomScrollView(
-      slivers: [
-        SliverAppBar(
-          expandedHeight: 60,
-          floating: false,
+        appBar: AppBar(
+          toolbarHeight: 65,
+          surfaceTintColor: whiteColor,
           backgroundColor: whiteColor,
           automaticallyImplyLeading: false,
-
-          centerTitle: true,
-          title: Text(
-            'Создай свой прогноз',
-            style: theme.titleSmall,
+          title: Center(
+            child: Text(
+              'Создай свой прогноз',
+              style: theme.titleSmall,
+            ),
           ),
           // другие настройки flexibleSpace
-
-          elevation: 0,
         ),
-        const SliverToBoxAdapter(
-          child: SizedBox(
-            height: 18,
-          ),
-        ),
-        ListTitleWidget()
-      ],
-    ));
+        body: CustomScrollView(
+          slivers: [
+            const SliverToBoxAdapter(
+              child: SizedBox(
+                height: 18,
+              ),
+            ),
+            ListTitleWidget()
+          ],
+        ));
   }
 }

@@ -10,7 +10,7 @@ import 'package:match_bet/bloc/bloc_auth/sign_up_bloc/sign_up_bloc.dart';
 import 'package:match_bet/bloc/update_user_info/update_user_info_bloc.dart';
 
 import 'package:match_bet/firebase_options.dart';
-import 'package:match_bet/repositories/auth/firebase_user_repositories.dart';
+import 'package:match_bet/repositories/auth_repositories/firebase_user_repositories.dart';
 import 'package:match_bet/router/router.dart';
 
 import 'package:match_bet/utils/theme.dart';

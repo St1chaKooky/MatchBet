@@ -54,7 +54,7 @@ class _MatchWidgetState extends State<MatchWidget> {
 
           return SliverPadding(
             padding:
-                const EdgeInsets.symmetric(horizontal: 15).copyWith(top: 18),
+                const EdgeInsets.symmetric(horizontal: 10).copyWith(top: 18),
             sliver: SliverToBoxAdapter(
               child: Container(
                 height: 410,

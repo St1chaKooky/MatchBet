@@ -23,14 +23,11 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
     return Scaffold(
-        body: CustomScrollView(
-      slivers: [
-        SliverAppBar(
-          expandedHeight: 60,
-          floating: false,
+        appBar: AppBar(
+          toolbarHeight: 65,
+          surfaceTintColor: whiteColor,
           backgroundColor: whiteColor,
           automaticallyImplyLeading: false,
-
           title: Center(
             child: index == 0
                 ? Text(
@@ -43,91 +40,91 @@ class _MainScreenState extends State<MainScreen> {
                   ),
           ),
           // другие настройки flexibleSpace
-
-          elevation: 0,
         ),
-        const SliverToBoxAdapter(
-          child: SizedBox(
-            height: 18,
-          ),
-        ),
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 18),
-            child: TextFieldInput(
-              hintText: 'Введите название матча',
-              textInputType: TextInputType.name,
-              color: whiteColor,
-              textEditingController: TextEditingController(),
+        body: CustomScrollView(
+          slivers: [
+            const SliverToBoxAdapter(
+              child: SizedBox(
+                height: 18,
+              ),
             ),
-          ),
-        ),
-        const SliverToBoxAdapter(
-          child: SizedBox(
-            height: 18,
-          ),
-        ),
-        SliverToBoxAdapter(
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                const SizedBox(
-                  width: 18,
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18),
+                child: TextFieldInput(
+                  hintText: 'Введите название матча',
+                  textInputType: TextInputType.name,
+                  color: whiteColor,
+                  textEditingController: TextEditingController(),
                 ),
-                ButtonLitleWidget(
-                  onTap: () => setState(() {
-                    index = 0;
-                  }),
-                  buttonText: 'Прогнозы',
-                  colorFill: index == 0 ? primaryColor : whiteColor,
-                  colorText: index == 0 ? whiteColor : textColor,
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                ButtonLitleWidget(
-                  onTap: () => setState(() {
-                    index = 1;
-                  }),
-                  buttonText: 'Матчи',
-                  colorFill: index == 1 ? primaryColor : whiteColor,
-                  colorText: index == 1 ? whiteColor : textColor,
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                ButtonLitleWidget(
-                  onTap: () => setState(() {
-                    index = 2;
-                  }),
-                  buttonText: 'Live',
-                  colorFill: index == 2 ? primaryColor : whiteColor,
-                  colorText: index == 2 ? whiteColor : textColor,
-                ),
-                const SizedBox(
-                  width: 18,
-                ),
-              ],
+              ),
             ),
-          ),
-        ),
-        const SliverToBoxAdapter(
-          child: SizedBox(
-            height: 18,
-          ),
-        ),
-        index == 0
-            ? SliverList.builder(
-                itemCount: 10,
-                itemBuilder: (context, i) {
-                  return ListPrognozWidget();
-                },
-              )
-            : index == 1
-                ? ListTitleWidget()
-                : ListTitleLiveWidget()
-      ],
-    ));
+            const SliverToBoxAdapter(
+              child: SizedBox(
+                height: 10,
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    const SizedBox(
+                      width: 18,
+                    ),
+                    ButtonLitleWidget(
+                      onTap: () => setState(() {
+                        index = 0;
+                      }),
+                      buttonText: 'Прогнозы',
+                      colorFill: index == 0 ? primaryColor : whiteColor,
+                      colorText: index == 0 ? whiteColor : textColor,
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    ButtonLitleWidget(
+                      onTap: () => setState(() {
+                        index = 1;
+                      }),
+                      buttonText: 'Матчи',
+                      colorFill: index == 1 ? primaryColor : whiteColor,
+                      colorText: index == 1 ? whiteColor : textColor,
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    ButtonLitleWidget(
+                      onTap: () => setState(() {
+                        index = 2;
+                      }),
+                      buttonText: 'Live',
+                      colorFill: index == 2 ? primaryColor : whiteColor,
+                      colorText: index == 2 ? whiteColor : textColor,
+                    ),
+                    const SizedBox(
+                      width: 18,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SliverToBoxAdapter(
+              child: SizedBox(
+                height: 10,
+              ),
+            ),
+            index == 0
+                ? SliverList.builder(
+                    itemCount: 10,
+                    itemBuilder: (context, i) {
+                      return ListPrognozWidget();
+                    },
+                  )
+                : index == 1
+                    ? ListTitleWidget()
+                    : ListTitleLiveWidget()
+          ],
+        ));
   }
 }

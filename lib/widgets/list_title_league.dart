@@ -77,7 +77,7 @@ class _ListTitleWidgetState extends State<ListTitleWidget> {
                       id: id, homeName: home, awayName: away, time: date));
                 }
                 return Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 15)
+                    margin: const EdgeInsets.symmetric(horizontal: 10)
                         .copyWith(bottom: 10),
                     decoration: BoxDecoration(
                       color: whiteColor,

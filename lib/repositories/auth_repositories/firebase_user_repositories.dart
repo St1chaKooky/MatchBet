@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:match_bet/repositories/auth/entity/user_entity.dart';
-import 'package:match_bet/repositories/auth/models/my_user_model.dart';
+import 'package:match_bet/repositories/auth_repositories/entity/user_entity.dart';
+import 'package:match_bet/repositories/auth_repositories/models/my_user_model.dart';
 
 import 'user_repo.dart';
 

@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:match_bet/repositories/auth/entity/user_entity.dart';
+import 'package:match_bet/repositories/auth_repositories/entity/user_entity.dart';
 
 // ignore: must_be_immutable
 class MyUser extends Equatable {
@@ -57,14 +57,4 @@ class MyUser extends Equatable {
 
   @override
   List<Object?> get props => [id, email, name, picture];
-
-  @override
-  String toString() {
-    return '''UserEntity: {
-      id: $id
-      email: $email
-      name: $name
-      picture: $picture
-    }''';
-  }
 }

@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:match_bet/repositories/auth/user_repo.dart';
+import 'package:match_bet/repositories/auth_repositories/user_repo.dart';
 
 part 'update_user_info_event.dart';
 part 'update_user_info_state.dart';

@@ -81,7 +81,7 @@ class _ListTitleLiveWidgetState extends State<ListTitleLiveWidget> {
                   ));
                 }
                 return Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 15)
+                    margin: const EdgeInsets.symmetric(horizontal: 10)
                         .copyWith(bottom: 10),
                     decoration: BoxDecoration(
                       color: whiteColor,

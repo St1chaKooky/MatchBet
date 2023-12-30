@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:match_bet/repositories/auth/models/my_user_model.dart';
-import 'package:match_bet/repositories/auth/user_repo.dart';
+import 'package:match_bet/repositories/auth_repositories/models/my_user_model.dart';
+import 'package:match_bet/repositories/auth_repositories/user_repo.dart';
 
 part 'sign_up_event.dart';
 part 'sign_up_state.dart';

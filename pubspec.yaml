@@ -53,6 +53,10 @@ flutter:
     - images/argentina.svg
     - images/like.svg
     - images/dizlike.svg
+    - assets/main.png
+    - assets/add.png
+    - assets/acc.png
+
 
 
     

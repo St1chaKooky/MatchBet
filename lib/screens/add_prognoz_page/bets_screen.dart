@@ -19,25 +19,23 @@ class _MyBetScreenState extends State<MyBetScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
     return Scaffold(
-        body: CustomScrollView(slivers: [
-      SliverAppBar(
-        expandedHeight: 60,
-        floating: false,
-        backgroundColor: whiteColor,
-
-        title: Center(
-          child: Text(
+        appBar: AppBar(
+          titleSpacing: 0,
+          toolbarHeight: 65,
+          surfaceTintColor: whiteColor,
+          backgroundColor: whiteColor,
+          automaticallyImplyLeading: true,
+          centerTitle: true,
+          title: Text(
             'Создай свой прогноз',
             style: theme.titleSmall,
           ),
+          // другие настройки flexibleSpace
         ),
-        // другие настройки flexibleSpace
-
-        elevation: 0,
-      ),
-      BetWidget(
-        id: widget.id,
-      )
-    ]));
+        body: CustomScrollView(slivers: [
+          BetWidget(
+            id: widget.id,
+          )
+        ]));
   }
 }

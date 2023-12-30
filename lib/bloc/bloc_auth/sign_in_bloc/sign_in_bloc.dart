@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:match_bet/repositories/auth/user_repo.dart';
+import 'package:match_bet/repositories/auth_repositories/user_repo.dart';
 
 part 'sign_in_event.dart';
 part 'sign_in_state.dart';

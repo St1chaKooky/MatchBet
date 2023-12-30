@@ -13,7 +13,7 @@ class ListPrognozWidget extends StatelessWidget {
     final theme = Theme.of(context).textTheme;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 18).copyWith(bottom: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10).copyWith(bottom: 10),
       child: Container(
         decoration: BoxDecoration(
           color: whiteColor,
@@ -132,10 +132,13 @@ class ListPrognozWidget extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    SvgPicture.asset(
-                      'images/like.svg',
-                      width: 22,
-                      height: 22,
+                    InkWell(
+                      onTap: () => print('like'),
+                      child: SvgPicture.asset(
+                        'images/like.svg',
+                        width: 22,
+                        height: 22,
+                      ),
                     ),
                     const SizedBox(
                       width: 6,
@@ -147,10 +150,13 @@ class ListPrognozWidget extends StatelessWidget {
                     const SizedBox(
                       width: 10,
                     ),
-                    SvgPicture.asset(
-                      'images/dizlike.svg',
-                      width: 22,
-                      height: 22,
+                    InkWell(
+                      onTap: () => print('dizlike'),
+                      child: SvgPicture.asset(
+                        'images/dizlike.svg',
+                        width: 22,
+                        height: 22,
+                      ),
                     ),
                     const SizedBox(
                       width: 6,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:match_bet/bloc/bloc_auth/sign_up_bloc/sign_up_bloc.dart';
-import 'package:match_bet/repositories/auth/models/my_user_model.dart';
+import 'package:match_bet/repositories/auth_repositories/models/my_user_model.dart';
 import 'package:match_bet/repositories/methods/algortm/stringField.dart';
 import 'package:match_bet/utils/colors.dart';
 import 'package:match_bet/widgets/button.dart';

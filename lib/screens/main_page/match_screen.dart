@@ -20,23 +20,21 @@ class _MatchScreenState extends State<MatchScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        titleSpacing: 0,
+        toolbarHeight: 65,
+        surfaceTintColor: whiteColor,
+        backgroundColor: whiteColor,
+        title: Text(
+          'Все матчи',
+          textAlign: TextAlign.center,
+          style: theme.titleSmall,
+        ),
+        // другие настройки flexibleSpace
+      ),
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(
-            expandedHeight: 60,
-            floating: false,
-            backgroundColor: whiteColor,
-
-            title: Center(
-              child: Text(
-                'Все матчи',
-                style: theme.titleSmall,
-              ),
-            ),
-            // другие настройки flexibleSpace
-
-            elevation: 0,
-          ),
           MatchWidget(
             id: widget.id,
             theme: theme,

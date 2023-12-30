@@ -28,15 +28,33 @@ class NavigationBarScreen extends StatelessWidget {
             onTap: (index) => openPage(index, tabsRouter),
             items: const [
               BottomNavigationBarItem(
-                icon: Icon(Icons.home),
+                icon: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 5),
+                  child: ImageIcon(
+                    AssetImage("assets/main.png"),
+                    size: 30,
+                  ),
+                ),
                 label: '',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.add),
+                icon: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 5),
+                  child: ImageIcon(
+                    AssetImage("assets/add.png"),
+                    size: 30,
+                  ),
+                ),
                 label: '',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.account_box_outlined),
+                icon: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 5),
+                  child: ImageIcon(
+                    AssetImage("assets/acc.png"),
+                    size: 30,
+                  ),
+                ),
                 label: '',
               ),
             ],
