@@ -3,20 +3,20 @@ import 'package:match_bet/repositories/auth_repositories/entity/user_entity.dart
 import 'package:match_bet/repositories/auth_repositories/models/my_user_model.dart';
 
 class PostEntity extends Equatable {
-  String postId;
-  String post;
-  DateTime createAt;
-  MyUser myUser;
-  String team1;
-  String team2;
-  String nameBet;
-  String time;
-  String date;
-  String k;
-  int like;
-  int disLike;
+  final String postId;
+  final String post;
+  final DateTime createAt;
+  final MyUser myUser;
+  final String team1;
+  final String team2;
+  final String nameBet;
+  final String time;
+  final String date;
+  final String k;
+  final int like;
+  final int disLike;
 
-  PostEntity({
+  const PostEntity({
     required this.postId,
     required this.post,
     required this.createAt,

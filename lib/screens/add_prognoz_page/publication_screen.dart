@@ -30,9 +30,11 @@ class _MyPublicationScreenState extends State<MyPublicationScreen> {
   @override
   Widget build(BuildContext context) {
     Post post;
+    String name = ' ';
     final theme = Theme.of(context).textTheme;
     return BlocBuilder<MyUserBloc, MyUserState>(builder: (context, state) {
       if (state.status == MyUserStatus.success) {
+        name = state.user!.name;
         post = Post.empty;
         post.myUser = state.user!;
         log(post.toString());
@@ -83,14 +85,10 @@ class _MyPublicationScreenState extends State<MyPublicationScreen> {
                                           width: 10,
                                         ),
                                         Text(
-                                          'Иосиф Сталин',
+                                          name,
                                           style: theme.bodyMedium,
                                         ),
                                       ],
-                                    ),
-                                    Text(
-                                      'Рейтинг: 111 455',
-                                      style: theme.bodyMedium,
                                     ),
                                   ],
                                 ),

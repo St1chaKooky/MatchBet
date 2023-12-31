@@ -48,10 +48,6 @@ class ListPrognozWidget extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Text(
-                        'Рейтинг: 111 455',
-                        style: theme.bodyMedium,
-                      ),
                     ],
                   ),
                   const SizedBox(
