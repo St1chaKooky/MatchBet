@@ -50,6 +50,10 @@ class _ListTitleWidgetState extends State<ListTitleWidget> {
                 final leagueCountry = listMatches.isNotEmpty
                     ? listMatches.first.league?.country
                     : ' ';
+                String leagueCountryLim = leagueCountry!;
+                if (leagueCountry.length > 12) {
+                  leagueCountryLim = "${leagueCountry.substring(0, 11)}...";
+                }
                 final leagueFlag = listMatches.isNotEmpty
                     ? listMatches.first.league?.flag ?? ' '
                     : ' ';
@@ -124,7 +128,7 @@ class _ListTitleWidgetState extends State<ListTitleWidget> {
                           width: 15,
                         ),
                         Text(
-                          '$leagueCountry. $limitedName',
+                          '$leagueCountryLim. $limitedName',
                           style: theme.textTheme.labelSmall,
                         ),
                       ]),

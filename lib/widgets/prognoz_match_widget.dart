@@ -2,26 +2,46 @@ import 'package:flutter/material.dart';
 import 'package:match_bet/utils/colors.dart';
 
 class PrognozMatchWidget extends StatefulWidget {
-  const PrognozMatchWidget({super.key});
+  final String post;
+  final String k;
+  final String name;
+  final String date;
+  final String nameBet;
+  final String team1;
+  final String team2;
+  final int like;
+  final int dislike;
+  final String? picture;
+
+  const PrognozMatchWidget({
+    required this.post,
+    required this.picture,
+    required this.team1,
+    required this.team2,
+    required this.date,
+    required this.k,
+    required this.nameBet,
+    required this.like,
+    required this.dislike,
+    required this.name,
+    super.key,
+  });
 
   @override
   State<PrognozMatchWidget> createState() => _PrognozMatchWidgetState();
-}
-
-var text =
-    'Клуб в этом сезоне, по большому счету, подарил только 1 неплохой отрезок. Вернувшись, по сути, случайно, в квалификацию Лиги чемпионов (с 3-го места в прошлогодней Высшей Лиги Беларуси, благодаря наказанию и солигорского "Шахтера", и "Энергетику-БГУ" за "договорняки"), там "батоны" смогли выбить первого противника, "Партизани" (и то выиграли у него 2-0 после 1-1 в Албании).';
-bool proverka() {
-  if (text.isNotEmpty) {
-    return true;
-  } else {
-    return false;
-  }
 }
 
 class _PrognozMatchWidgetState extends State<PrognozMatchWidget> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
+    bool proverka() {
+      if (widget.post.isNotEmpty) {
+        return true;
+      } else {
+        return false;
+      }
+    }
 
     return Expanded(
       child: Container(
@@ -47,14 +67,10 @@ class _PrognozMatchWidgetState extends State<PrognozMatchWidget> {
                       width: 10,
                     ),
                     Text(
-                      'Иосиф Сталин',
+                      widget.name,
                       style: theme.bodyMedium,
                     ),
                   ],
-                ),
-                Text(
-                  'Рейтинг: 111 455',
-                  style: theme.bodyMedium,
                 ),
               ],
             ),
@@ -68,21 +84,17 @@ class _PrognozMatchWidgetState extends State<PrognozMatchWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Интер',
+                      widget.team1,
                       style: theme.headlineSmall,
                     ),
-                    Text('Монца', style: theme.headlineSmall)
+                    Text(widget.team2, style: theme.headlineSmall)
                   ],
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      'Сегодня',
-                      style: theme.bodyMedium,
-                    ),
-                    Text(
-                      '11:00',
+                      widget.date,
                       style: theme.bodyMedium,
                     ),
                   ],
@@ -103,7 +115,7 @@ class _PrognozMatchWidgetState extends State<PrognozMatchWidget> {
                       style: theme.bodySmall,
                     ),
                     Text(
-                      'ТМ1.5',
+                      widget.nameBet,
                       style: theme.bodyLarge,
                     ),
                   ],
@@ -116,7 +128,7 @@ class _PrognozMatchWidgetState extends State<PrognozMatchWidget> {
                   height: 35,
                   child: Center(
                       child: Text(
-                    '2.47',
+                    widget.k,
                     style: TextStyle(
                         fontSize: 14,
                         color: whiteColor,
@@ -129,7 +141,7 @@ class _PrognozMatchWidgetState extends State<PrognozMatchWidget> {
               height: 20,
             ),
             Text(
-              text,
+              widget.post,
               style: theme.bodyLarge,
             ),
             const SizedBox(

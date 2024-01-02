@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:match_bet/repositories/auth_repositories/entity/user_entity.dart';
 import 'package:match_bet/repositories/auth_repositories/models/my_user_model.dart';
 
 class PostEntity extends Equatable {
+  final int matchId;
   final String postId;
   final String post;
   final DateTime createAt;
@@ -10,13 +12,13 @@ class PostEntity extends Equatable {
   final String team1;
   final String team2;
   final String nameBet;
-  final String time;
   final String date;
   final String k;
   final int like;
   final int disLike;
 
   const PostEntity({
+    required this.matchId,
     required this.postId,
     required this.post,
     required this.createAt,
@@ -24,7 +26,6 @@ class PostEntity extends Equatable {
     required this.team1,
     required this.team2,
     required this.nameBet,
-    required this.time,
     required this.date,
     required this.k,
     required this.like,
@@ -33,6 +34,7 @@ class PostEntity extends Equatable {
 
   Map<String, Object?> toDocument() {
     return {
+      'matchId': matchId,
       'postId': postId,
       'post': post,
       'createAt': createAt,
@@ -40,7 +42,6 @@ class PostEntity extends Equatable {
       'team1': team1,
       'team2': team2,
       'nameBet': nameBet,
-      'time': time,
       'date': date,
       'k': k,
       'like': like,
@@ -50,14 +51,14 @@ class PostEntity extends Equatable {
 
   static PostEntity formDocument(Map<String, dynamic> doc) {
     return PostEntity(
+      matchId: doc['matchId'] as int,
       postId: doc['postId'] as String,
       post: doc['post'] as String,
-      createAt: DateTime.parse(doc['createAt']),
+      createAt: (doc['createAt'] as Timestamp).toDate(),
       myUser: MyUser.fromEntity(MyUserEntity.formDocument(doc['myUser'])),
       team1: doc['team1'] as String,
       team2: doc['team2'] as String,
       nameBet: doc['nameBet'] as String,
-      time: doc['time'] as String,
       date: doc['date'] as String,
       k: doc['k'] as String,
       like: doc['like'] as int,
@@ -67,6 +68,7 @@ class PostEntity extends Equatable {
 
   @override
   List<Object?> get props => [
+        matchId,
         postId,
         post,
         createAt,
@@ -74,7 +76,6 @@ class PostEntity extends Equatable {
         team1,
         team2,
         nameBet,
-        time,
         date,
         k,
         like,
@@ -83,6 +84,7 @@ class PostEntity extends Equatable {
   @override
   String toString() {
     return '''PostEntity: {
+      matchId: $matchId
       postId: $postId
       post: $post
       createAt: $createAt
@@ -90,7 +92,6 @@ class PostEntity extends Equatable {
       team1: $team1
       team2: $team2
       nameBet: $nameBet
-      time: $time
       date: $date
       k: $k
       like: $like

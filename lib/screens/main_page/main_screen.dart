@@ -18,6 +18,10 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int index = 0;
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -115,12 +119,7 @@ class _MainScreenState extends State<MainScreen> {
               ),
             ),
             index == 0
-                ? SliverList.builder(
-                    itemCount: 10,
-                    itemBuilder: (context, i) {
-                      return ListPrognozWidget();
-                    },
-                  )
+                ? ListPrognozWidget()
                 : index == 1
                     ? ListTitleWidget()
                     : ListTitleLiveWidget()

@@ -11,8 +11,14 @@ import 'package:match_bet/router/router.dart';
 import '../utils/colors.dart';
 
 class BetWidget extends StatefulWidget {
+  final String team1;
+  final String team2;
+  final String date;
   final int id;
   const BetWidget({
+    required this.date,
+    required this.team1,
+    required this.team2,
     required this.id,
     super.key,
   });
@@ -49,7 +55,7 @@ class _BetWidgetState extends State<BetWidget> {
                   List<Valuee>? listValues = betList?[i].values;
                   List<_MyBet> listWidget = [];
                   for (int i = 0; i < listValues!.length; i++) {
-                    String value = 'ф';
+                    String value = ' ';
                     String odd = '';
                     if (listValues[i].odd != null) {
                       odd = listValues[i].odd!;
@@ -62,6 +68,9 @@ class _BetWidgetState extends State<BetWidget> {
                         id: widget.id,
                         odd: odd,
                         value: value,
+                        date: widget.date,
+                        team1: widget.team1,
+                        team2: widget.team2,
                       ),
                     );
                   }
@@ -140,10 +149,16 @@ class _NotBet extends StatelessWidget {
 }
 
 class _MyBet extends StatefulWidget {
+  final String team1;
+  final String team2;
+  final String date;
   final int id;
   final String value;
   final String odd;
   const _MyBet({
+    required this.date,
+    required this.team1,
+    required this.team2,
     super.key,
     required this.value,
     required this.odd,
@@ -160,7 +175,13 @@ class _MyBetState extends State<_MyBet> {
     final theme = Theme.of(context).textTheme;
     return InkWell(
       onTap: () {
-        AutoRouter.of(context).push(MyPublicationRoute());
+        AutoRouter.of(context).push(MyPublicationRoute(
+            matchId: widget.id,
+            date: widget.date,
+            k: widget.odd,
+            nameBet: widget.value,
+            team1: widget.team1,
+            team2: widget.team2));
       },
       child: Column(
         children: [

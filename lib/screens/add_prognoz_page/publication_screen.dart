@@ -1,19 +1,31 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:match_bet/bloc/bloc_auth/my_user_bloc/my_user_bloc.dart';
+import 'package:match_bet/bloc/bloc_post/create_post_bloc/create_post_bloc_bloc.dart';
 import 'package:match_bet/repositories/post_repositories/models/post_model.dart';
+import 'package:match_bet/router/router.dart';
 import 'package:match_bet/utils/colors.dart';
 
 import '../../widgets/button_litle.dart';
-
-import '../../widgets/prognoz_widget.dart';
 import 'package:auto_route/auto_route.dart';
 
 @RoutePage()
 class MyPublicationScreen extends StatefulWidget {
-  MyPublicationScreen({Key? key}) : super(key: key);
+  final int matchId;
+  final String date;
+  final String k;
+  final String nameBet;
+  final String team1;
+  final String team2;
+  const MyPublicationScreen(
+      {Key? key,
+      required this.matchId,
+      required this.team1,
+      required this.team2,
+      required this.date,
+      required this.k,
+      required this.nameBet})
+      : super(key: key);
 
   @override
   State<MyPublicationScreen> createState() => _MyPublicationScreenState();
@@ -21,23 +33,46 @@ class MyPublicationScreen extends StatefulWidget {
 
 class _MyPublicationScreenState extends State<MyPublicationScreen> {
   bool f = false;
+  final TextEditingController _controller = TextEditingController();
+  late Post post;
+  @override
+  void initState() {
+    super.initState();
+    post = Post.empty;
+  }
 
   @override
-  void setState(VoidCallback fn) {
-    super.setState(fn);
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    post = Post.empty;
+  }
+
+  String parseDateAndTime(String dateTime, bool timeA) {
+    // Разделение строки на дату и время
+    List<String> parts = dateTime.split(' ');
+    String dayss = parts[0];
+    String timee = parts[1];
+    if (timeA) {
+      return timee;
+    } else {
+      return dayss;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    Post post;
     String name = ' ';
     final theme = Theme.of(context).textTheme;
     return BlocBuilder<MyUserBloc, MyUserState>(builder: (context, state) {
       if (state.status == MyUserStatus.success) {
+        post.matchId = widget.matchId;
+        post = Post.empty;
         name = state.user!.name;
         post = Post.empty;
         post.myUser = state.user!;
-        log(post.toString());
+        String time = parseDateAndTime(widget.date, true);
+        String days = parseDateAndTime(widget.date, false);
+
         return GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
           child: Scaffold(
@@ -104,10 +139,10 @@ class _MyPublicationScreenState extends State<MyPublicationScreen> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          'Интер',
+                                          widget.team1,
                                           style: theme.headlineSmall,
                                         ),
-                                        Text('Монца',
+                                        Text(widget.team2,
                                             style: theme.headlineSmall)
                                       ],
                                     ),
@@ -116,11 +151,11 @@ class _MyPublicationScreenState extends State<MyPublicationScreen> {
                                           CrossAxisAlignment.end,
                                       children: [
                                         Text(
-                                          'Сегодня',
+                                          days,
                                           style: theme.bodyMedium,
                                         ),
                                         Text(
-                                          '11:00',
+                                          time,
                                           style: theme.bodyMedium,
                                         ),
                                       ],
@@ -143,7 +178,7 @@ class _MyPublicationScreenState extends State<MyPublicationScreen> {
                                           style: theme.bodySmall,
                                         ),
                                         Text(
-                                          'ТМ1.5',
+                                          widget.nameBet,
                                           style: theme.bodyLarge,
                                         ),
                                       ],
@@ -157,7 +192,7 @@ class _MyPublicationScreenState extends State<MyPublicationScreen> {
                                       height: 35,
                                       child: Center(
                                           child: Text(
-                                        '2.47',
+                                        widget.k,
                                         style: TextStyle(
                                             fontSize: 14,
                                             color: whiteColor,
@@ -170,6 +205,7 @@ class _MyPublicationScreenState extends State<MyPublicationScreen> {
                                   height: 20,
                                 ),
                                 TextField(
+                                  controller: _controller,
                                   maxLines: 4,
                                   maxLength: 250,
                                   decoration: InputDecoration(
@@ -198,10 +234,25 @@ class _MyPublicationScreenState extends State<MyPublicationScreen> {
                         height: 18,
                       ),
                       ButtonLitleWidget(
-                        onTap: () {},
+                        onTap: () {
+                          if (_controller.text.isNotEmpty) {
+                            setState(() {
+                              post.post = _controller.text;
+                              post.date = widget.date;
+                              post.team1 = widget.team1;
+                              post.team2 = widget.team2;
+                              post.nameBet = widget.nameBet;
+                              post.k = widget.k;
+                            });
+                            context
+                                .read<CreatePostBlocBloc>()
+                                .add(CreatePost(post));
+                            AutoRouter.of(context).push(const MainRoute());
+                          }
+                        },
                         buttonText: 'Опубликовать',
                         width: double.infinity,
-                        colorFill: proverka() ? primaryColor : textColor,
+                        colorFill: primaryColor,
                         colorText: whiteColor,
                         bigButton: true,
                       ),

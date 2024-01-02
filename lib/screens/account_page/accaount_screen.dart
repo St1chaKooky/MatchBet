@@ -157,12 +157,7 @@ class _AccountScreenState extends State<AccountScreen> {
                     ),
                   ),
                 ),
-                SliverList.builder(
-                  itemCount: 10,
-                  itemBuilder: (context, i) {
-                    return ListPrognozWidget();
-                  },
-                )
+                const ListPrognozWidget(),
               ],
             ),
           );

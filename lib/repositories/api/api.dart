@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:match_bet/models/bets/response.dart';
 import 'package:match_bet/models/bets/response_model.dart';
@@ -58,6 +60,7 @@ class ApiMatch {
     };
     try {
       final response = await dio.get(apiUrl, queryParameters: {'id': '$id'});
+      log(id.toString());
       if (response.statusCode == 200) {
         final responseData = response.data;
         if (responseData is Map<String, dynamic>) {

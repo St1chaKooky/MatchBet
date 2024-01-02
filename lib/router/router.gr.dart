@@ -57,16 +57,26 @@ abstract class _$AppRouter extends RootStackRouter {
         routeData: routeData,
         child: MyBetScreen(
           key: args.key,
+          date: args.date,
+          team1: args.team1,
+          team2: args.team2,
           id: args.id,
         ),
       );
     },
     MyPublicationRoute.name: (routeData) {
-      final args = routeData.argsAs<MyPublicationRouteArgs>(
-          orElse: () => const MyPublicationRouteArgs());
+      final args = routeData.argsAs<MyPublicationRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: MyPublicationScreen(key: args.key),
+        child: MyPublicationScreen(
+          key: args.key,
+          matchId: args.matchId,
+          team1: args.team1,
+          team2: args.team2,
+          date: args.date,
+          k: args.k,
+          nameBet: args.nameBet,
+        ),
       );
     },
     NavigationBarRoute.name: (routeData) {
@@ -78,9 +88,23 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     PrognozRoute.name: (routeData) {
+      final args = routeData.argsAs<PrognozRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const PrognozScreen(),
+        child: PrognozScreen(
+          key: args.key,
+          post: args.post,
+          matchId: args.matchId,
+          picture: args.picture,
+          team1: args.team1,
+          team2: args.team2,
+          date: args.date,
+          k: args.k,
+          nameBet: args.nameBet,
+          like: args.like,
+          dislike: args.dislike,
+          name: args.name,
+        ),
       );
     },
     SignUpRoute.name: (routeData) {
@@ -197,12 +221,18 @@ class MatchRouteArgs {
 class MyBetRoute extends PageRouteInfo<MyBetRouteArgs> {
   MyBetRoute({
     Key? key,
+    required String date,
+    required String team1,
+    required String team2,
     required int id,
     List<PageRouteInfo>? children,
   }) : super(
           MyBetRoute.name,
           args: MyBetRouteArgs(
             key: key,
+            date: date,
+            team1: team1,
+            team2: team2,
             id: id,
           ),
           initialChildren: children,
@@ -216,16 +246,25 @@ class MyBetRoute extends PageRouteInfo<MyBetRouteArgs> {
 class MyBetRouteArgs {
   const MyBetRouteArgs({
     this.key,
+    required this.date,
+    required this.team1,
+    required this.team2,
     required this.id,
   });
 
   final Key? key;
 
+  final String date;
+
+  final String team1;
+
+  final String team2;
+
   final int id;
 
   @override
   String toString() {
-    return 'MyBetRouteArgs{key: $key, id: $id}';
+    return 'MyBetRouteArgs{key: $key, date: $date, team1: $team1, team2: $team2, id: $id}';
   }
 }
 
@@ -234,10 +273,24 @@ class MyBetRouteArgs {
 class MyPublicationRoute extends PageRouteInfo<MyPublicationRouteArgs> {
   MyPublicationRoute({
     Key? key,
+    required int matchId,
+    required String team1,
+    required String team2,
+    required String date,
+    required String k,
+    required String nameBet,
     List<PageRouteInfo>? children,
   }) : super(
           MyPublicationRoute.name,
-          args: MyPublicationRouteArgs(key: key),
+          args: MyPublicationRouteArgs(
+            key: key,
+            matchId: matchId,
+            team1: team1,
+            team2: team2,
+            date: date,
+            k: k,
+            nameBet: nameBet,
+          ),
           initialChildren: children,
         );
 
@@ -248,13 +301,33 @@ class MyPublicationRoute extends PageRouteInfo<MyPublicationRouteArgs> {
 }
 
 class MyPublicationRouteArgs {
-  const MyPublicationRouteArgs({this.key});
+  const MyPublicationRouteArgs({
+    this.key,
+    required this.matchId,
+    required this.team1,
+    required this.team2,
+    required this.date,
+    required this.k,
+    required this.nameBet,
+  });
 
   final Key? key;
 
+  final int matchId;
+
+  final String team1;
+
+  final String team2;
+
+  final String date;
+
+  final String k;
+
+  final String nameBet;
+
   @override
   String toString() {
-    return 'MyPublicationRouteArgs{key: $key}';
+    return 'MyPublicationRouteArgs{key: $key, matchId: $matchId, team1: $team1, team2: $team2, date: $date, k: $k, nameBet: $nameBet}';
   }
 }
 
@@ -289,16 +362,90 @@ class NavigationBarRouteArgs {
 
 /// generated route for
 /// [PrognozScreen]
-class PrognozRoute extends PageRouteInfo<void> {
-  const PrognozRoute({List<PageRouteInfo>? children})
-      : super(
+class PrognozRoute extends PageRouteInfo<PrognozRouteArgs> {
+  PrognozRoute({
+    Key? key,
+    required String post,
+    required int matchId,
+    required String? picture,
+    required String team1,
+    required String team2,
+    required String date,
+    required String k,
+    required String nameBet,
+    required int like,
+    required int dislike,
+    required String name,
+    List<PageRouteInfo>? children,
+  }) : super(
           PrognozRoute.name,
+          args: PrognozRouteArgs(
+            key: key,
+            post: post,
+            matchId: matchId,
+            picture: picture,
+            team1: team1,
+            team2: team2,
+            date: date,
+            k: k,
+            nameBet: nameBet,
+            like: like,
+            dislike: dislike,
+            name: name,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'PrognozRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<PrognozRouteArgs> page =
+      PageInfo<PrognozRouteArgs>(name);
+}
+
+class PrognozRouteArgs {
+  const PrognozRouteArgs({
+    this.key,
+    required this.post,
+    required this.matchId,
+    required this.picture,
+    required this.team1,
+    required this.team2,
+    required this.date,
+    required this.k,
+    required this.nameBet,
+    required this.like,
+    required this.dislike,
+    required this.name,
+  });
+
+  final Key? key;
+
+  final String post;
+
+  final int matchId;
+
+  final String? picture;
+
+  final String team1;
+
+  final String team2;
+
+  final String date;
+
+  final String k;
+
+  final String nameBet;
+
+  final int like;
+
+  final int dislike;
+
+  final String name;
+
+  @override
+  String toString() {
+    return 'PrognozRouteArgs{key: $key, post: $post, matchId: $matchId, picture: $picture, team1: $team1, team2: $team2, date: $date, k: $k, nameBet: $nameBet, like: $like, dislike: $dislike, name: $name}';
+  }
 }
 
 /// generated route for

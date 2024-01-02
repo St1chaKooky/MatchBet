@@ -13,8 +13,6 @@ class FirebasePostRepository implements PostRepository {
     try {
       post.postId = const Uuid().v1();
       post.createAt = DateTime.now();
-      post.like = 0;
-      post.disLike = 0;
       await postsCollection.doc(post.postId).set(post.toEntity().toDocument());
       return post;
     } catch (e) {

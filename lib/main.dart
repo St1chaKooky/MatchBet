@@ -7,10 +7,13 @@ import 'package:match_bet/bloc/bloc_auth/auth_bloc/auth_bloc.dart';
 import 'package:match_bet/bloc/bloc_auth/my_user_bloc/my_user_bloc.dart';
 import 'package:match_bet/bloc/bloc_auth/sign_in_bloc/sign_in_bloc.dart';
 import 'package:match_bet/bloc/bloc_auth/sign_up_bloc/sign_up_bloc.dart';
+import 'package:match_bet/bloc/bloc_post/create_post_bloc/create_post_bloc_bloc.dart';
+import 'package:match_bet/bloc/bloc_post/get_post_bloc/get_post_bloc_bloc.dart';
 import 'package:match_bet/bloc/update_user_info/update_user_info_bloc.dart';
 
 import 'package:match_bet/firebase_options.dart';
 import 'package:match_bet/repositories/auth_repositories/firebase_user_repositories.dart';
+import 'package:match_bet/repositories/post_repositories/firebase_post_repositories.dart';
 import 'package:match_bet/router/router.dart';
 
 import 'package:match_bet/utils/theme.dart';
@@ -45,6 +48,15 @@ Future main() async {
               myUserRepository: context.read<AuthBloc>().userRepo)
             ..add(
                 GetMyUser(myUserId: context.read<AuthBloc>().state.user!.uid)),
+        ),
+        BlocProvider<CreatePostBlocBloc>(
+          create: (context) =>
+              CreatePostBlocBloc(postRepository: FirebasePostRepository()),
+        ),
+        BlocProvider<GetPostBlocBloc>(
+          create: (context) =>
+              GetPostBlocBloc(postRepository: FirebasePostRepository())
+                ..add(GetPosts()),
         ),
       ],
       child: const MyApp(),

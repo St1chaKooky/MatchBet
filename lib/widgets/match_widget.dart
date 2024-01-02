@@ -43,7 +43,7 @@ class _MatchWidgetState extends State<MatchWidget> {
           final response = state.matchModel;
           String title = '${response.league?.country}.${response.league?.name}';
           String date =
-              DataMatch(match: true).getData('${response.fixture?.date}');
+              DataMatch(match: false).getData('${response.fixture?.date}');
 
           String logoHome = state.matchModel.teams?.home?.logo ?? ' ';
           String logoAway = state.matchModel.teams?.away?.logo ?? ' ';
@@ -136,10 +136,13 @@ class _MatchWidgetState extends State<MatchWidget> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           ButtonLitleWidget(
-                            width: 150,
+                            width: 160,
                             onTap: () {
-                              AutoRouter.of(context)
-                                  .push(MyBetRoute(id: widget.id));
+                              AutoRouter.of(context).push(MyBetRoute(
+                                  id: widget.id,
+                                  date: date,
+                                  team1: nameHome,
+                                  team2: nameAway));
                             },
                             buttonText: 'Составить прогноз',
                             colorFill: primaryColor,
