@@ -51,7 +51,7 @@ class _MyPublicationScreenState extends State<MyPublicationScreen> {
     // Разделение строки на дату и время
     List<String> parts = dateTime.split(' ');
     String dayss = parts[0];
-    String timee = parts[1];
+    String timee = parts[2];
     if (timeA) {
       return timee;
     } else {
@@ -70,6 +70,7 @@ class _MyPublicationScreenState extends State<MyPublicationScreen> {
         name = state.user!.name;
         post = Post.empty;
         post.myUser = state.user!;
+        String? picture = state.user!.picture!;
         String time = parseDateAndTime(widget.date, true);
         String days = parseDateAndTime(widget.date, false);
 
@@ -112,10 +113,22 @@ class _MyPublicationScreenState extends State<MyPublicationScreen> {
                                   children: [
                                     Row(
                                       children: [
-                                        CircleAvatar(
-                                          backgroundColor: bottomBarColor,
-                                          radius: 13,
-                                        ),
+                                        picture.isNotEmpty
+                                            ? Container(
+                                                width: 26,
+                                                height: 26,
+                                                decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                    image: DecorationImage(
+                                                        image: NetworkImage(
+                                                          picture,
+                                                        ),
+                                                        fit: BoxFit.cover)),
+                                              )
+                                            : CircleAvatar(
+                                                backgroundColor: bottomBarColor,
+                                                radius: 13,
+                                              ),
                                         const SizedBox(
                                           width: 10,
                                         ),

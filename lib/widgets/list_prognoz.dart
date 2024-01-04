@@ -37,6 +37,7 @@ class _ListPrognozWidgetState extends State<ListPrognozWidget> {
               itemBuilder: (context, i) {
                 Post post = state.posts[i];
                 int matchId = post.matchId;
+
                 String k = post.k;
                 String postText = post.post;
                 String name = post.myUser.name;
@@ -166,10 +167,22 @@ class _PrognozWidgetState extends State<PrognozWidget> {
                     children: [
                       Row(
                         children: [
-                          CircleAvatar(
-                            backgroundColor: bottomBarColor,
-                            radius: 13,
-                          ),
+                          widget.picture!.isNotEmpty
+                              ? Container(
+                                  width: 26,
+                                  height: 26,
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      image: DecorationImage(
+                                          image: NetworkImage(
+                                            widget.picture!,
+                                          ),
+                                          fit: BoxFit.cover)),
+                                )
+                              : CircleAvatar(
+                                  backgroundColor: bottomBarColor,
+                                  radius: 13,
+                                ),
                           const SizedBox(
                             width: 10,
                           ),

@@ -43,6 +43,20 @@ class _PrognozMatchWidgetState extends State<PrognozMatchWidget> {
       }
     }
 
+    String parseDateAndTime(String dateTime, bool timeA) {
+      // Разделение строки на дату и время
+      List<String> parts = dateTime.split(' ');
+      String dayss = parts[0];
+      String timee = parts[2];
+      if (timeA) {
+        return timee;
+      } else {
+        return dayss;
+      }
+    }
+
+    String time = parseDateAndTime(widget.date, true);
+    String days = parseDateAndTime(widget.date, false);
     return Expanded(
       child: Container(
         // height: 400,
@@ -59,10 +73,22 @@ class _PrognozMatchWidgetState extends State<PrognozMatchWidget> {
               children: [
                 Row(
                   children: [
-                    CircleAvatar(
-                      backgroundColor: bottomBarColor,
-                      radius: 13,
-                    ),
+                    widget.picture!.isNotEmpty
+                        ? Container(
+                            width: 26,
+                            height: 26,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                      widget.picture!,
+                                    ),
+                                    fit: BoxFit.cover)),
+                          )
+                        : CircleAvatar(
+                            backgroundColor: bottomBarColor,
+                            radius: 13,
+                          ),
                     const SizedBox(
                       width: 10,
                     ),
@@ -94,7 +120,11 @@ class _PrognozMatchWidgetState extends State<PrognozMatchWidget> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      widget.date,
+                      days,
+                      style: theme.bodyMedium,
+                    ),
+                    Text(
+                      time,
                       style: theme.bodyMedium,
                     ),
                   ],

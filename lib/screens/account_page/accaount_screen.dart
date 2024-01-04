@@ -111,8 +111,8 @@ class _AccountScreenState extends State<AccountScreen> {
                                     ),
                                   )
                                 : Container(
-                                    width: 50,
-                                    height: 50,
+                                    width: 70,
+                                    height: 70,
                                     decoration: BoxDecoration(
                                         color: Colors.grey,
                                         shape: BoxShape.circle,
@@ -132,10 +132,6 @@ class _AccountScreenState extends State<AccountScreen> {
                                 Text(
                                   state.user!.name,
                                   style: theme.headlineSmall,
-                                ),
-                                Text(
-                                  "Футбольный фанат",
-                                  style: theme.bodyMedium,
                                 ),
                               ],
                             ),
