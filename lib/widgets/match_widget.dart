@@ -57,7 +57,8 @@ class _MatchWidgetState extends State<MatchWidget> {
                 const EdgeInsets.symmetric(horizontal: 10).copyWith(top: 18),
             sliver: SliverToBoxAdapter(
               child: Container(
-                height: 410,
+                height: 270,
+                // height: 410,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12), color: whiteColor),
                 child: Padding(
@@ -99,39 +100,39 @@ class _MatchWidgetState extends State<MatchWidget> {
                         ],
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 30,
                       ),
-                      Container(
-                        width: 280,
-                        height: 8,
-                        color: primaryColor,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      SizedBox(
-                        width: 280,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Интер 71%',
-                              style: widget.theme.bodyMedium,
-                            ),
-                            Text(
-                              'Ничья 18%',
-                              style: widget.theme.bodyMedium,
-                            ),
-                            Text(
-                              'Монца 11%',
-                              style: widget.theme.bodyMedium,
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
+                      // Container(
+                      //   width: 280,
+                      //   height: 8,
+                      //   color: primaryColor,
+                      // ),
+                      // const SizedBox(
+                      //   height: 10,
+                      // ),
+                      // SizedBox(
+                      //   width: 280,
+                      //   child: Column(
+                      //     crossAxisAlignment: CrossAxisAlignment.start,
+                      //     children: [
+                      //       Text(
+                      //         'Интер 71%',
+                      //         style: widget.theme.bodyMedium,
+                      //       ),
+                      //       Text(
+                      //         'Ничья 18%',
+                      //         style: widget.theme.bodyMedium,
+                      //       ),
+                      //       Text(
+                      //         'Монца 11%',
+                      //         style: widget.theme.bodyMedium,
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
+                      // const SizedBox(
+                      //   height: 20,
+                      // ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -153,47 +154,47 @@ class _MatchWidgetState extends State<MatchWidget> {
                       const SizedBox(
                         height: 20,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Column(
-                            children: [
-                              Text(
-                                'П1',
-                                style: widget.theme.labelMedium,
-                              ),
-                              Text(
-                                '8.95',
-                                style: widget.theme.labelMedium,
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text(
-                                'Ничья',
-                                style: widget.theme.labelMedium,
-                              ),
-                              Text(
-                                '8.95',
-                                style: widget.theme.labelMedium,
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text(
-                                'П2',
-                                style: widget.theme.labelMedium,
-                              ),
-                              Text(
-                                '8.95',
-                                style: widget.theme.labelMedium,
-                              ),
-                            ],
-                          ),
-                        ],
-                      )
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      //   children: [
+                      //     Column(
+                      //       children: [
+                      //         Text(
+                      //           'П1',
+                      //           style: widget.theme.labelMedium,
+                      //         ),
+                      //         Text(
+                      //           '8.95',
+                      //           style: widget.theme.labelMedium,
+                      //         ),
+                      //       ],
+                      //     ),
+                      //     Column(
+                      //       children: [
+                      //         Text(
+                      //           'Ничья',
+                      //           style: widget.theme.labelMedium,
+                      //         ),
+                      //         Text(
+                      //           '8.95',
+                      //           style: widget.theme.labelMedium,
+                      //         ),
+                      //       ],
+                      //     ),
+                      //     Column(
+                      //       children: [
+                      //         Text(
+                      //           'П2',
+                      //           style: widget.theme.labelMedium,
+                      //         ),
+                      //         Text(
+                      //           '8.95',
+                      //           style: widget.theme.labelMedium,
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ],
+                      // )
                     ],
                   ),
                 ),

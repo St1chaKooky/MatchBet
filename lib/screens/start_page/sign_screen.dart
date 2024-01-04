@@ -8,7 +8,6 @@ import 'package:match_bet/utils/colors.dart';
 import 'package:match_bet/widgets/button.dart';
 
 import '../../router/router.dart';
-import '../../widgets/button_google.dart';
 import '../../widgets/input.dart';
 import 'package:auto_route/auto_route.dart';
 
@@ -223,10 +222,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   const SizedBox(
                     height: 10,
                   ),
-                  const ButtonGoogleWidget(),
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  // const ButtonGoogleWidget(),
+                  // const SizedBox(
+                  //   height: 10,
+                  // ),
                   stateError
                       ? Flexible(
                           child: Center(

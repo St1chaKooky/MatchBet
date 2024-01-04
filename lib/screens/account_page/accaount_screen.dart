@@ -8,7 +8,7 @@ import 'package:match_bet/bloc/bloc_auth/sign_in_bloc/sign_in_bloc.dart';
 import 'package:match_bet/bloc/update_user_info/update_user_info_bloc.dart';
 import 'package:match_bet/utils/colors.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:match_bet/widgets/list_prognoz.dart';
+import 'package:match_bet/widgets/list_prognoz_account.dart';
 
 import '../../bloc/bloc_auth/my_user_bloc/my_user_bloc.dart';
 
@@ -145,15 +145,17 @@ class _AccountScreenState extends State<AccountScreen> {
                 ),
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 30, horizontal: 25),
+                    padding: const EdgeInsets.only(
+                        top: 30, bottom: 10, left: 25, right: 25),
                     child: Text(
-                      'Мои прогнозы',
-                      style: theme.titleSmall,
+                      'Мои прогнозы ',
+                      style: theme.headlineSmall,
                     ),
                   ),
                 ),
-                const ListPrognozWidget(),
+                ListPrognozAccountWidget(
+                  id: state.user!.id,
+                ),
               ],
             ),
           );

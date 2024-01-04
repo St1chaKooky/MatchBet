@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:match_bet/widgets/list_title_live.dart';
 import '../../utils/colors.dart';
 import '../../widgets/button_litle.dart';
-import '../../widgets/input.dart';
 import '../../widgets/list_prognoz.dart';
 import '../../widgets/list_title_league.dart';
 
@@ -47,22 +46,22 @@ class _MainScreenState extends State<MainScreen> {
         ),
         body: CustomScrollView(
           slivers: [
-            const SliverToBoxAdapter(
-              child: SizedBox(
-                height: 18,
-              ),
-            ),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 18),
-                child: TextFieldInput(
-                  hintText: 'Введите название матча',
-                  textInputType: TextInputType.name,
-                  color: whiteColor,
-                  textEditingController: TextEditingController(),
-                ),
-              ),
-            ),
+            // const SliverToBoxAdapter(
+            //   child: SizedBox(
+            //     height: 18,
+            //   ),
+            // ),
+            // SliverToBoxAdapter(
+            //   child: Padding(
+            //     padding: const EdgeInsets.symmetric(horizontal: 18),
+            //     child: TextFieldInput(
+            //       hintText: 'Введите название матча',
+            //       textInputType: TextInputType.name,
+            //       color: whiteColor,
+            //       textEditingController: TextEditingController(),
+            //     ),
+            //   ),
+            // ),
             const SliverToBoxAdapter(
               child: SizedBox(
                 height: 10,
