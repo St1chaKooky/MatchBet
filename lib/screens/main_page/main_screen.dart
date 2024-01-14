@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
-import 'package:match_bet/widgets/list_title_live.dart';
+import 'package:match_bet/components_lists/list_title_live.dart';
 import '../../utils/colors.dart';
 import '../../widgets/button_litle.dart';
-import '../../widgets/list_prognoz.dart';
-import '../../widgets/list_title_league.dart';
+import '../../components_lists/list_prognoz.dart';
+import '../../components_lists/list_title_league.dart';
 
 @RoutePage()
 class MainScreen extends StatefulWidget {

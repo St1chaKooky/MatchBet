@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
-import 'package:match_bet/widgets/list_title_league.dart';
+import 'package:match_bet/components_lists/list_title_league.dart';
 
 import '../../utils/colors.dart';
 

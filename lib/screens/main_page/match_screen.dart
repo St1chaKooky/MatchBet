@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:match_bet/utils/colors.dart';
-import '../../widgets/match_widget.dart';
+import '../../components/match_widget.dart';
 
 @RoutePage()
 class MatchScreen extends StatefulWidget {

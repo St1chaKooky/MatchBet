@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:match_bet/utils/colors.dart';
-import 'package:match_bet/widgets/prognoz_match_widget.dart';
+import 'package:match_bet/components/prognoz_match_widget.dart';
 
-import '../../widgets/match_widget.dart';
+import '../../components/match_widget.dart';
 
 import 'package:auto_route/auto_route.dart';
 

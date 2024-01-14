@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import '../../utils/colors.dart';
-import '../../widgets/bet_widget.dart';
+import '../../components/bet_widget.dart';
 import 'package:auto_route/auto_route.dart';
 
 @RoutePage()
@@ -12,7 +12,13 @@ class MyBetScreen extends StatefulWidget {
   final String team2;
   final String date;
 
-  const MyBetScreen({Key? key, required this.date,required this.team1, required this.team2, required this.id}) : super(key: key);
+  const MyBetScreen(
+      {Key? key,
+      required this.date,
+      required this.team1,
+      required this.team2,
+      required this.id})
+      : super(key: key);
 
   @override
   State<MyBetScreen> createState() => _MyBetScreenState();
@@ -38,7 +44,10 @@ class _MyBetScreenState extends State<MyBetScreen> {
         ),
         body: CustomScrollView(slivers: [
           BetWidget(
-            id: widget.id, date: widget.date, team1: widget.team1, team2: widget.team2,
+            id: widget.id,
+            date: widget.date,
+            team1: widget.team1,
+            team2: widget.team2,
           )
         ]));
   }

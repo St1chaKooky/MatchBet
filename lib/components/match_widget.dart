@@ -9,7 +9,7 @@ import 'package:match_bet/repositories/methods/api_methods/api_methods.dart';
 
 import '../router/router.dart';
 import '../utils/colors.dart';
-import 'button_litle.dart';
+import '../widgets/button_litle.dart';
 
 class MatchWidget extends StatefulWidget {
   final int id;

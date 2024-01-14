@@ -8,7 +8,7 @@ import 'package:match_bet/bloc/bloc_auth/sign_in_bloc/sign_in_bloc.dart';
 import 'package:match_bet/bloc/update_user_info/update_user_info_bloc.dart';
 import 'package:match_bet/utils/colors.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:match_bet/widgets/list_prognoz_account.dart';
+import 'package:match_bet/components_lists/list_prognoz_account.dart';
 
 import '../../bloc/bloc_auth/my_user_bloc/my_user_bloc.dart';
 
